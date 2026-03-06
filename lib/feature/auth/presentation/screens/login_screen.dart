@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textInputType: TextInputType.emailAddress,
                           hintText: "Email Address",
                           prefixIconPath: AppAssets.email,
-                          validator: (value) => Validator.validateField(value, 'email'),
+                          validator: (value) => Validator.validateField(value, 'login email'),
                         ),
                         20.hight,
                         Text("Password",style: AppStyles.styleRegular14(context),),
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: "Password",
                           isPassword: true,
                           prefixIconPath: AppAssets.password,
-                          validator: (value) => Validator.validateField(value, 'password'),
+                          validator: (value) => Validator.validateField(value, 'login password'),
                         ),
                         20.hight,
                         GestureDetector(onTap: (){

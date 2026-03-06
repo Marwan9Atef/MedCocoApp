@@ -81,6 +81,10 @@ class Validator {
           return 'Bio must not exceed 150 characters';
         }
         break;
+
+      case 'login email':
+      case 'login password':
+        break;
     }
 
     return null;
