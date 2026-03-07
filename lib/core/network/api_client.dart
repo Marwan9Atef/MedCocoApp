@@ -2,9 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:valo/core/constant/api_constant.dart';
+import 'package:valo/core/di/service_locator.dart';
+import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart';
+
 @lazySingleton
 class ApiClient {
   late final Dio _dio;
+
   ApiClient() {
     _dio = Dio(
       BaseOptions(
@@ -13,10 +17,21 @@ class ApiClient {
         receiveTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),
         receiveDataWhenStatusError: true,
-
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+        },
+      ),
+    );
+
+    _dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          final token = await serviceLocator<AuthLocalMedicalService>().getAccessToken();
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          handler.next(options);
         },
       ),
     );
@@ -33,14 +48,6 @@ class ApiClient {
         ),
       );
     }
-  }
-
-  void setToken(String token) {
-    _dio.options.headers['Authorization'] = 'Bearer $token';
-  }
-
-  void removeToken() {
-    _dio.options.headers.remove('Authorization');
   }
 
   Future<Response> get(
