@@ -4,6 +4,8 @@ import 'package:valo/core/error/app_exception.dart';
 import 'package:valo/core/network/api_client.dart';
 import 'package:valo/feature/auth/data/models/login_request_model.dart';
 import 'package:valo/feature/auth/data/models/login_response_model.dart';
+import 'package:valo/feature/auth/data/models/register_request_model.dart';
+import 'package:valo/feature/auth/data/models/register_resposne_model.dart';
 import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart';
 
 @LazySingleton(as: AuthRemoteMedicalService)
@@ -20,9 +22,22 @@ class AuthApiMedicalService implements AuthRemoteMedicalService {
       );
       return LoginResponseModel.fromJson(response.data);
     } catch (exception) {
-   
       final message = extractDioErrorMessage(exception);
       throw RemoteException(message ?? 'An error occurred during login');
+    }
+  }
+
+  @override
+  Future<RegisterResposneModel> register(RegisterRequestModel registerRequestModel) async {
+    try {
+      final response = await apiClient.post(
+        ApiConstant.registerEndpoint,
+        data: registerRequestModel.toJson(),
+      );
+      return RegisterResposneModel.fromJson(response.data);
+    } catch (exception) {
+      final message = extractDioErrorMessage(exception);
+      throw RemoteException(message ?? 'An error occurred during registration');
     }
   }
 }

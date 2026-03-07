@@ -44,9 +44,6 @@ class Validator {
           return 'Password must contain at least one number';
         }
 
-        if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
-          return 'Password must contain at least one special character';
-        }
         break;
 
       case 'old password':

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart';
 import 'package:valo/feature/auth/presentation/screens/code_screen.dart';
 import 'package:valo/feature/auth/presentation/screens/login_screen.dart';
 import 'package:valo/view/valo_view.dart';
@@ -35,7 +36,10 @@ class AppRouter {
         path: RouteCenter.register,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
-            child: const RegisterScreen(),
+            child: BlocProvider(
+              create: (context) => serviceLocator<RegisterCubit>(),
+              child: const RegisterScreen(),
+            ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) =>
                     FadeTransition(opacity: animation, child: child),

@@ -20,6 +20,8 @@ import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_servic
 import 'package:valo/feature/auth/domain/auth_repo.dart' as _i125;
 import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i728;
+import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart'
+    as _i250;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -39,6 +41,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i728.LoginCubit>(
       () => _i728.LoginCubit(authRepo: gh<_i125.AuthRepo>()),
+    );
+    gh.factory<_i250.RegisterCubit>(
+      () => _i250.RegisterCubit(authRepo: gh<_i125.AuthRepo>()),
     );
     return this;
   }
