@@ -40,7 +40,7 @@ String? extractDioErrorMessage(Object exception) {
   final data = exception.response!.data;
 
   if (data is Map<String, dynamic>) {
-    return data['detail']?.toString();
+    return data['detail']?.toString()?? data['message']?.toString();
   }
 
   if (data is String && data.isNotEmpty) {
