@@ -17,7 +17,7 @@ class AuthRepoImpl implements AuthRepo {
       final response = await authRemoteMedicalService.login(loginRequestModel);
       return Right(response);
     }on AppException catch (exception) {
-      return Left(Failure(exception.toString()));
+      return Left(Failure(exception.message.toString()));
     }
   }
 }

@@ -20,6 +20,7 @@ class AuthApiMedicalService implements AuthRemoteMedicalService {
       );
       return LoginResponseModel.fromJson(response.data);
     } catch (exception) {
+   
       final message = extractDioErrorMessage(exception);
       throw RemoteException(message ?? 'An error occurred during login');
     }
