@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/dummy/model/ray_model.dart';
 import 'package:valo/core/theme/app_style.dart';
 import 'package:valo/core/utils/context_util.dart';
 import 'package:valo/core/widget/remove_container.dart';
