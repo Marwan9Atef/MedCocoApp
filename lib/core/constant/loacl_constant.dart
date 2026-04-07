@@ -1,7 +1,5 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
 class LoaclConstant {
-  static final String accessTokenKey = dotenv.env['accessTokenKey']!;
-  static final String refreshTokenKey = dotenv.env['refreshTokenKey']!;
-  static final String userIdKey = dotenv.env['userIdKey']!;
+  static const String accessTokenKey = String.fromEnvironment('accessTokenKey');
+  static const String refreshTokenKey = String.fromEnvironment('refreshTokenKey');
+  static const String userIdKey = String.fromEnvironment('userIdKey');
 }
