@@ -30,7 +30,7 @@ class BeforeSearchItem extends StatelessWidget {
         children: [
           SvgPicture.asset(AppAssets.imagesSearchIcon,height: 20,width: 20,fit: BoxFit.scaleDown,),
           12.width,
-          Text("Or search by keywords...",style:AppStyles.styleRegular16(context),)
+          Text("search by keywords...",style:AppStyles.styleRegular16(context),)
 
         ],
       ),

@@ -11,7 +11,7 @@ import '../../../../core/theme/search_delgate_theme.dart';
 class UploadSearch extends SearchDelegate {
 
   @override
-  String get searchFieldLabel => "Or search by keywords...";
+  String get searchFieldLabel => "search by keywords...";
   @override
   ThemeData appBarTheme(BuildContext context) {
     return SearchDelegateTheme.searchTheme;

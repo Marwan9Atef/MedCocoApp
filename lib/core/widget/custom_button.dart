@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
 import 'package:valo/core/utils/context_util.dart';
+import 'package:valo/core/widget/simple_loading_indicator.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key,required this.text,required this.onPressed, this.isLoading=false});
@@ -11,25 +12,30 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: AnimatedContainer(
-        curve: Curves.easeInOutQuint,
-        duration: Duration(milliseconds: 500),
-        width:  isLoading
-            ? context.screenWidth * 0.4:
-            context.screenWidth,
-        height: 48,
-        decoration: ShapeDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0.00, 0.50),
-            end: Alignment(1.00, 0.50),
-            colors: [AppColor.lightBlue, AppColor.pruple],
+    return Center(
+      child: AbsorbPointer(
+        absorbing: isLoading,
+        child: InkWell(
+          onTap: onPressed,
+          child: AnimatedContainer(
+            curve: Curves.easeInOutQuint,
+            duration: Duration(milliseconds: 500),
+            width:  isLoading
+                ? context.screenWidth * 0.4:
+                context.screenWidth,
+            height: 48,
+            decoration: ShapeDecoration(
+              gradient: LinearGradient(
+                begin: Alignment(0.00, 0.50),
+                end: Alignment(1.00, 0.50),
+                colors: [AppColor.lightBlue, AppColor.pruple],
+              ),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+          child:isLoading?const SimpleLoadingIndicator():Center(child: Text(text,style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white),)),
+        
           ),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
-      child: Center(child: Text(text,style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white),)),
-
       ),
     );
   }
