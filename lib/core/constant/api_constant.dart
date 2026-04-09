@@ -1,5 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class ApiConstant {
-  static const String baseUrl = String.fromEnvironment('baseUrl');
-  static const String loginEndpoint = String.fromEnvironment('loginEndpoint');
-  static const String registerEndpoint = String.fromEnvironment('registerEndpoint');
+  static String get baseUrl => dotenv.env['baseUrl'] ?? '';
+  static String get loginEndpoint => dotenv.env['loginEndpoint'] ?? '';
+  static String get registerEndpoint => dotenv.env['registerEndpoint'] ?? '';
 }

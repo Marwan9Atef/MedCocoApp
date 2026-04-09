@@ -12,23 +12,28 @@ class RemoveContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-          width: 36,
-          height: 36,
-          decoration: ShapeDecoration(
-
-            color: const Color(0x7F18181B),
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                width: 1.18,
-                color: const Color(0xFF3E3E46),
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
+    return Container(
+      width: 36,
+      height: 36,
+      decoration: ShapeDecoration(
+        color: const Color(0x7F18181B),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 1.18,
+            color: const Color(0xFF3E3E46),
           ),
-          child: SvgPicture.asset(AppAssets.imagesRemoveIcon,fit: BoxFit.scaleDown)),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          mouseCursor: SystemMouseCursors.click,
+          borderRadius: BorderRadius.circular(8),
+          child: SvgPicture.asset(AppAssets.imagesRemoveIcon, fit: BoxFit.scaleDown),
+        ),
+      ),
     );
   }
 }

@@ -50,6 +50,7 @@ context.push(
   extra: rayModel.imagePath,
 );
                         },
+                        mouseCursor: SystemMouseCursors.click,
                         child: SvgPicture.asset(AppAssets.detailsContainer,fit: BoxFit.scaleDown,height:36,width: 36,)),
                     12.width,
                     RemoveContainer(

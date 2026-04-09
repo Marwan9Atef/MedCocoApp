@@ -17,50 +17,48 @@ class CodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child:
-      SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 16),
-          child: Center(
-            heightFactor:context.screenHeight>1080?2:1.5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const AuthHeader(title: "Verify OTP", subtitle: "Enter the 6-digit code sent to your email"),
-                AuthContainer(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            child: Center(
+              heightFactor: context.screenHeight > 1080 ? 2 : 1.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const AuthHeader(
+                    title: "Verify OTP",
+                    subtitle: "Enter the 6-digit code sent to your email",
+                  ),
+                  AuthContainer(
+                    width: 0.35,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Enter OTP",style: AppStyles.styleRegular14(context),),
+                        Text(
+                          "Enter OTP",
+                          style: AppStyles.styleRegular14(context),
+                        ),
                         20.hight,
                         const CodeForm(),
                         20.hight,
                         const ResendButton(),
                         20.hight,
-                        CustomButton(text: "Verify OTP", onPressed: (){
-                          context.go(RouteCenter.reset);
-                        }),
-
-
-
-
+                        CustomButton(
+                          text: "Verify OTP",
+                          onPressed: () {
+                            context.go(RouteCenter.reset);
+                          },
+                        ),
                       ],
-
-                    ))
-
-
-
-
-              ],
-
-
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      )
       ),
-
     );
   }
 }
-

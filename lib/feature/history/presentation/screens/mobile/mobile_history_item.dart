@@ -26,6 +26,7 @@ class MobileHistoryItem extends StatelessWidget {
             onTap: (){
               context.push(RouteCenter.fullScreenImage,extra: rayModel.imagePath);
             },
+            mouseCursor: SystemMouseCursors.click,
             child: ClipRRect(
                 borderRadius: BorderRadiusGeometry.all(
                   Radius.circular(14),

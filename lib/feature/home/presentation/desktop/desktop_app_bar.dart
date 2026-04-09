@@ -20,20 +20,18 @@ class DesktopAppBar extends StatelessWidget {
 
           ),
           actions: List.generate(2, (index) =>
-              InkWell(onTap: () {
-                if (currentTab == index) return;
-                context.read<PageCubit>().setValue(index);
-              },
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onHighlightChanged: (isHighlight) {
-
-
-                  },
-
-
-                  child: AppBarItem(isActive: currentTab == index,
-                    item: ItemModel.items[index],))),
+              InkWell(
+                onTap: () {
+                  if (currentTab == index) return;
+                  context.read<PageCubit>().setValue(index);
+                },
+                mouseCursor: SystemMouseCursors.click,
+                borderRadius: BorderRadius.circular(8),
+                child: AppBarItem(
+                  isActive: currentTab == index,
+                  item: ItemModel.items[index],
+                ),
+              )),
 
 
         );
