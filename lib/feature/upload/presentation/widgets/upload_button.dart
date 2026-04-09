@@ -10,28 +10,31 @@ class UploadButton extends StatelessWidget {
 final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12,vertical: 7),
-        height:36 ,
-   width: 150,
-        decoration: ShapeDecoration(
-          color: AppColor.primaryColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-      SvgPicture.asset(AppAssets.imagesImageIcon,height: 15,width: 15,fit: BoxFit.scaleDown,),
-      16.width,
-      FittedBox(fit: BoxFit.scaleDown,child: Text("Select File",style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white),)),
-
-        ],
-
-
+    return Container(
+      height: 36,
+      width: 150,
+      decoration: ShapeDecoration(
+        color: AppColor.primaryColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: onTap,
+          mouseCursor: SystemMouseCursors.click,
+          borderRadius: BorderRadius.circular(8),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(AppAssets.imagesImageIcon, height: 15, width: 15, fit: BoxFit.scaleDown),
+                16.width,
+                FittedBox(fit: BoxFit.scaleDown, child: Text("Select File", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white))),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

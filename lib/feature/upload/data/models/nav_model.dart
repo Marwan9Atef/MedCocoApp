@@ -8,6 +8,6 @@ class NavModel {
   static final List<NavModel>navList= [
     NavModel(title: "Upload", icon: AppAssets.imagesUploadIcon),
     NavModel(title: "History", icon: AppAssets.imagesHistoryIcon),
-
+    NavModel(title: "Logout", icon: AppAssets.imagesLogoutIcon),
   ];
 }

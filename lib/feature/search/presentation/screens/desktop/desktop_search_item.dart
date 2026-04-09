@@ -41,26 +41,33 @@ class DesktopSearchItem extends StatelessWidget {
                 Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
                 15.hight,
                 IntrinsicWidth(
-                  child: InkWell(
-                    onTap: (){
-                      context.push(RouteCenter.fullScreenImage,extra: rayModel.imagePath);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 12),
-                     decoration: ShapeDecoration(
-                     color: AppColor.primaryColor,
-                     shape: RoundedRectangleBorder(
-                     borderRadius: BorderRadius.circular(10),
-                     ),
-                     ),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(AppAssets.imagesDetailsSvg,fit: BoxFit.scaleDown,height:16,width: 16,),
-                          8.width,
-                          Text("View Details",style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white)),
-                        ],
+                  child: Container(
+                    decoration: ShapeDecoration(
+                      color: AppColor.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                     ),
+                    ),
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        onTap: (){
+                          context.push(RouteCenter.fullScreenImage,extra: rayModel.imagePath);
+                        },
+                        mouseCursor: SystemMouseCursors.click,
+                        borderRadius: BorderRadius.circular(10),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(AppAssets.imagesDetailsSvg, fit: BoxFit.scaleDown, height: 16, width: 16),
+                              8.width,
+                              Text("View Details", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 )
 

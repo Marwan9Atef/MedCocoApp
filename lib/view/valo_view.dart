@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valo/core/utils/context_util.dart';
 import 'package:valo/feature/home/presentation/cubit/page_cubit.dart';
 import 'package:valo/feature/home/presentation/desktop/desktop_app_bar.dart';
+import 'package:valo/feature/upload/presentation/cubit/upload_images_cubit.dart';
 import 'package:valo/view/valo_desktop_layout.dart';
 import 'package:valo/view/valo_mobile_view.dart';
 import '../core/theme/app_color.dart';
@@ -15,8 +16,11 @@ class ValoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PageCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => PageCubit()),
+        BlocProvider(create: (context) => UploadImagesCubit()),
+      ],
       child: Scaffold(
         appBar: context.screenWidth > 800 ? PreferredSize(
             preferredSize: const Size.fromHeight(kToolbarHeight),

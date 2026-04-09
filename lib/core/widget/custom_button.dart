@@ -15,25 +15,31 @@ class CustomButton extends StatelessWidget {
     return Center(
       child: AbsorbPointer(
         absorbing: isLoading,
-        child: InkWell(
-          onTap: onPressed,
-          child: AnimatedContainer(
-            curve: Curves.easeInOutQuint,
-            duration: Duration(milliseconds: 500),
-            width:  isLoading
-                ? context.screenWidth * 0.4:
-                context.screenWidth,
-            height: 48,
-            decoration: ShapeDecoration(
-              gradient: LinearGradient(
-                begin: Alignment(0.00, 0.50),
-                end: Alignment(1.00, 0.50),
-                colors: [AppColor.lightBlue, AppColor.pruple],
-              ),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        child: AnimatedContainer(
+          curve: Curves.easeInOutQuint,
+          duration: Duration(milliseconds: 500),
+          width: isLoading
+              ? context.screenWidth * 0.4
+              : context.screenWidth,
+          height: 48,
+          decoration: ShapeDecoration(
+            gradient: LinearGradient(
+              begin: Alignment(0.00, 0.50),
+              end: Alignment(1.00, 0.50),
+              colors: [AppColor.lightBlue, AppColor.pruple],
             ),
-          child:isLoading?const SimpleLoadingIndicator():Center(child: Text(text,style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white),)),
-        
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: onPressed,
+              mouseCursor: SystemMouseCursors.click,
+              borderRadius: BorderRadius.circular(8),
+              child: isLoading
+                  ? const SimpleLoadingIndicator()
+                  : Center(child: Text(text, style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white))),
+            ),
           ),
         ),
       ),
