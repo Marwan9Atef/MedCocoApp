@@ -79,6 +79,12 @@ class Validator {
         }
         break;
 
+      case 'otp':
+        if (value.length < 6) {
+          return 'Please enter the full 6-digit OTP';
+        }
+        break;
+
       case 'login email':
       case 'login password':
         break;

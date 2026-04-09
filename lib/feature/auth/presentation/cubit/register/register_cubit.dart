@@ -6,12 +6,12 @@ import 'package:valo/feature/auth/presentation/cubit/register/register_states.da
 
 @injectable
 class RegisterCubit extends Cubit<RegisterStates> {
-  final AuthRepo authRepo;
-  RegisterCubit({required this.authRepo}) : super(RegisterInitial());
+  final AuthRepo _authRepo;
+  RegisterCubit(this._authRepo) : super(RegisterInitial());
 
   void register(RegisterRequestModel registerRequestModel) async {
     emit(RegisterLoading());
-    final result = await authRepo.register(registerRequestModel);
+    final result = await _authRepo.register(registerRequestModel);
     result.fold(
       (failure) => emit(RegisterFailure(error: failure.message)),
       (success) => emit(RegisterSuccess(message: success.message!)),

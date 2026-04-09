@@ -25,6 +25,10 @@ import 'package:valo/feature/auth/data/service/remote/auth_api_medical_service.d
 import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart'
     as _i64;
 import 'package:valo/feature/auth/domain/auth_repo.dart' as _i125;
+import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart'
+    as _i617;
+import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart'
+    as _i678;
 import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i728;
 import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart'
@@ -59,11 +63,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i852.AuthLocalMedicalService>(),
       ),
     );
-    gh.factory<_i728.LoginCubit>(
-      () => _i728.LoginCubit(authRepo: gh<_i125.AuthRepo>()),
+    gh.factory<_i617.ConfirmResetCubit>(
+      () => _i617.ConfirmResetCubit(gh<_i125.AuthRepo>()),
     );
+    gh.factory<_i678.ForgetCubit>(
+      () => _i678.ForgetCubit(gh<_i125.AuthRepo>()),
+    );
+    gh.factory<_i728.LoginCubit>(() => _i728.LoginCubit(gh<_i125.AuthRepo>()));
     gh.factory<_i250.RegisterCubit>(
-      () => _i250.RegisterCubit(authRepo: gh<_i125.AuthRepo>()),
+      () => _i250.RegisterCubit(gh<_i125.AuthRepo>()),
     );
     return this;
   }
