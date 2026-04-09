@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valo/feature/home/presentation/shared/logout_item.dart';
 
 import '../../../../core/theme/app_style.dart';
 import '../../data/item_model.dart';
@@ -19,7 +20,9 @@ class DesktopAppBar extends StatelessWidget {
 
 
           ),
-          actions: List.generate(2, (index) =>
+          actions: [
+            
+            ...List.generate(2, (index) =>
               InkWell(
                 onTap: () {
                   if (currentTab == index) return;
@@ -32,6 +35,10 @@ class DesktopAppBar extends StatelessWidget {
                   item: ItemModel.items[index],
                 ),
               )),
+              LogoutItem(),
+           
+              
+              ],
 
 
         );
