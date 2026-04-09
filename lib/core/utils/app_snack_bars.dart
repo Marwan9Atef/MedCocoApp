@@ -12,7 +12,7 @@ abstract class AppSnackBars {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          message,textDirection: TextDirection.rtl,
+          message,
           style: TextStyle(color: AppColor.white),
         ),
         backgroundColor: AppColor.primaryColor,
@@ -27,7 +27,7 @@ abstract class AppSnackBars {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          message,textDirection: TextDirection.rtl,
+          message,
           style: TextStyle(color: AppColor.white),
         ),
         backgroundColor: AppColor.red,

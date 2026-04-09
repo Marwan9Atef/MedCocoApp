@@ -1,0 +1,126 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:valo/core/generated/assets.dart';
+import 'package:valo/core/routes/route_center.dart';
+import 'package:valo/core/theme/app_style.dart';
+import 'package:valo/core/utils/app_snack_bars.dart';
+import 'package:valo/core/utils/sizebox_util.dart';
+import 'package:valo/core/utils/validator.dart';
+import 'package:valo/core/widget/custom_button.dart';
+import 'package:valo/core/widget/custom_text_form_filed.dart';
+import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
+import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart';
+import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_states.dart';
+import '../../shared/auth_container.dart';
+import '../code/code_form.dart';
+import '../code/resend_button.dart';
+
+class ResetFormBody extends StatelessWidget {
+  const ResetFormBody({
+    super.key,
+    required this.email,
+    required this.formKey,
+    required this.passwordController,
+    required this.confirmPasswordController,
+    required this.onOtpCompleted,
+    required this.otpGetter,
+  });
+
+  final String email;
+  final GlobalKey<FormState> formKey;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
+  final ValueChanged<String> onOtpCompleted;
+  final ValueGetter<String> otpGetter;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ConfirmResetCubit, ConfirmResetStates>(
+      listener: (context, state) {
+        if (state is ConfirmResetSuccess) {
+          AppSnackBars.showSuccessSnackBar(
+            context: context,
+            message: state.message,
+          );
+          context.go(RouteCenter.login);
+        } else if (state is ConfirmResetFailure) {
+          AppSnackBars.showErrorSnackBar(
+            context: context,
+            message: state.error,
+          );
+        }
+      },
+      builder: (context, state) {
+        return AuthContainer(
+          width: 0.35,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "Enter OTP",
+                  style: AppStyles.styleRegular14(context),
+                ),
+              ),
+              20.hight,
+              CodeForm(onCompleted: onOtpCompleted),
+              20.hight,
+              Text(
+                "New Password",
+                style: AppStyles.styleRegular14(context),
+              ),
+              8.hight,
+              CustomTextFormField(
+                textInputType: TextInputType.visiblePassword,
+                hintText: "Enter new password",
+                prefixIconPath: AppAssets.password,
+                isPassword: true,
+                validator: (value) =>
+                    Validator.validateField(value, 'password'),
+                controller: passwordController,
+              ),
+              20.hight,
+              Text(
+                "Confirm Password",
+                style: AppStyles.styleRegular14(context),
+              ),
+              8.hight,
+              CustomTextFormField(
+                textInputType: TextInputType.visiblePassword,
+                hintText: "Confirm new password",
+                isPassword: true,
+                prefixIconPath: AppAssets.password,
+                validator: (value) => Validator.validateField(
+                  value,
+                  'confirmPassword',
+                  password: passwordController.text,
+                ),
+                controller: confirmPasswordController,
+              ),
+              20.hight,
+              CustomButton(
+                isLoading: state is ConfirmResetLoading,
+                text: "Reset Password",
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context.read<ConfirmResetCubit>().confirmResetPassword(
+                      ConfirmResetPasswordRequest(
+                        email: email,
+                        otp: otpGetter(),
+                        newPassword: passwordController.text,
+                        confirmNewPassword: confirmPasswordController.text,
+                      ),
+                    );
+                  }
+                },
+              ),
+              20.hight,
+              Center(child: ResendButton(email: email)),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

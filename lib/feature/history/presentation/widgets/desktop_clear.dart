@@ -11,32 +11,34 @@ class DesktopClear extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){},
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 10),
-        decoration: ShapeDecoration(
-          color: const Color(0x7F18181B),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              width: 0.80,
-              color: const Color(0xFF3E3E46),
+    return Container(
+      decoration: ShapeDecoration(
+        color: const Color(0x7F18181B),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 0.80,
+            color: const Color(0xFF3E3E46),
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: (){},
+          mouseCursor: SystemMouseCursors.click,
+          borderRadius: BorderRadius.circular(8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            child: Row(
+              children: [
+                const ClearIcon(),
+                16.width,
+                FittedBox(fit: BoxFit.scaleDown, child: Text("Clear", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.red))),
+              ],
             ),
-            borderRadius: BorderRadius.circular(8),
           ),
         ),
-        child: Row(
-          children: [
-            const ClearIcon(),
-            16.width,
-            FittedBox(fit: BoxFit.scaleDown,child: Text("Clear",style: AppStyles.styleRegular14(context).copyWith(color: AppColor.red),))
-
-
-          ],
-
-        ),
-
-
       ),
     );
   }

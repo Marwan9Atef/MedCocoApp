@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:valo/core/error/app_exception.dart';
 import 'package:valo/core/failure/failure.dart';
+import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
 import 'package:valo/feature/auth/data/models/login_request_model.dart';
 import 'package:valo/feature/auth/data/models/login_response_model.dart';
 import 'package:valo/feature/auth/data/models/register_request_model.dart';
@@ -35,6 +36,26 @@ class AuthRepoImpl implements AuthRepo {
       await _localService.setToken(response.accessToken, response.refreshToken);
       await _localService.setUserId(response.user?.uid);
       return Right(response);
+    } on AppException catch (exception) {
+      return Left(Failure(exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> forget(String email) async {
+    try {
+      final message = await _remoteService.forget(email);
+      return Right(message);
+    } on AppException catch (exception) {
+      return Left(Failure(exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> confirmResetPassword(ConfirmResetPasswordRequest request) async {
+    try {
+      final message = await _remoteService.confirmResetPassword(request);
+      return Right(message);
     } on AppException catch (exception) {
       return Left(Failure(exception.message));
     }
