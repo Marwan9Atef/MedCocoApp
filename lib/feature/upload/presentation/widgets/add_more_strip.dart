@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import '../../../../core/theme/app_style.dart';
 
@@ -27,7 +26,7 @@ class AddMoreStrip extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.add_photo_alternate_outlined, color: AppColor.gray, size: 20),
-              8.width,
+              const SizedBox(width: 8),
               Text(
                 "Add More Images",
                 style: AppStyles.styleRegular14(context).copyWith(color: AppColor.gray),

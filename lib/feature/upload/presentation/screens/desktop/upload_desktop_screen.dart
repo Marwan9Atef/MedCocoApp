@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import '../../widgets/info_item_row.dart';
 import '../upload_screen.dart' show UploadScreen;
 
@@ -17,7 +16,7 @@ class UploadDesktopScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const UploadScreen(),
-            32.hight,
+            const SizedBox(height: 32),
             const InfoItemRow(),
           ],
         ),

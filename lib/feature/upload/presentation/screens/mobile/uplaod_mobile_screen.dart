@@ -1,6 +1,5 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import '../../widgets/info_item_column.dart';
 import '../upload_screen.dart';
@@ -18,7 +17,7 @@ class UploadMobileScreen extends StatelessWidget {
         child: Column(
           children: [
             const UploadScreen(),
-            32.hight,
+            const SizedBox(height: 32),
             const InfoItemColumn(),
           ],
         ),

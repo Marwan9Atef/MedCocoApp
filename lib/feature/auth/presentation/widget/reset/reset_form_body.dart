@@ -5,7 +5,6 @@ import 'package:valo/core/generated/assets.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/theme/app_style.dart';
 import 'package:valo/core/utils/app_snack_bars.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import 'package:valo/core/utils/validator.dart';
 import 'package:valo/core/widget/custom_button.dart';
 import 'package:valo/core/widget/custom_text_form_filed.dart';
@@ -63,14 +62,14 @@ class ResetFormBody extends StatelessWidget {
                   style: AppStyles.styleRegular14(context),
                 ),
               ),
-              20.hight,
+              const SizedBox(height: 20),
               CodeForm(onCompleted: onOtpCompleted),
-              20.hight,
+              const SizedBox(height: 20),
               Text(
                 "New Password",
                 style: AppStyles.styleRegular14(context),
               ),
-              8.hight,
+              const SizedBox(height: 8),
               CustomTextFormField(
                 textInputType: TextInputType.visiblePassword,
                 hintText: "Enter new password",
@@ -80,12 +79,12 @@ class ResetFormBody extends StatelessWidget {
                     Validator.validateField(value, 'password'),
                 controller: passwordController,
               ),
-              20.hight,
+              const SizedBox(height: 20),
               Text(
                 "Confirm Password",
                 style: AppStyles.styleRegular14(context),
               ),
-              8.hight,
+              const SizedBox(height: 8),
               CustomTextFormField(
                 textInputType: TextInputType.visiblePassword,
                 hintText: "Confirm new password",
@@ -98,7 +97,7 @@ class ResetFormBody extends StatelessWidget {
                 ),
                 controller: confirmPasswordController,
               ),
-              20.hight,
+              const SizedBox(height: 20),
               CustomButton(
                 isLoading: state is ConfirmResetLoading,
                 text: "Reset Password",
@@ -115,7 +114,7 @@ class ResetFormBody extends StatelessWidget {
                   }
                 },
               ),
-              20.hight,
+              const SizedBox(height: 20),
               Center(child: ResendButton(email: email)),
             ],
           ),

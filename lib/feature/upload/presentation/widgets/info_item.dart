@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import '../../data/models/info_item_model.dart';
 
@@ -32,7 +31,7 @@ class InfoItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FittedBox(fit: BoxFit.scaleDown,child: Text(infoItemModel.title,style: AppStyles.styleRegular16(context),)),
-            9.hight,
+            const SizedBox(height: 9),
             FittedBox(fit: BoxFit.scaleDown,child: Text(infoItemModel.description,style: AppStyles.styleRegular14(context),))
 
           ],

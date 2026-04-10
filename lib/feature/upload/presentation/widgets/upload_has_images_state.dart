@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import 'add_more_strip.dart';
 import 'compact_image_grid.dart';
@@ -25,11 +24,11 @@ class UploadHasImagesState extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ImagesHeaderRow(count: images.length),
-          16.hight,
+          const SizedBox(height: 16),
           CompactImageGrid(images: images),
-          16.hight,
+          const SizedBox(height: 16),
           AddMoreStrip(onTap: onPickImages),
-          20.hight,
+          const SizedBox(height: 20),
           UploadImagesButton(
             onTap: () {
               // TODO: wire to your upload API

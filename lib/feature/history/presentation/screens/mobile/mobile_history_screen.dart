@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import '../../../../../core/utils/sizebox_util.dart';
 import '../../widgets/history_header.dart';
 import 'mobile_history_list.dart';
 
@@ -14,7 +13,7 @@ class MobileHistoryScreen extends StatelessWidget {
         child: Column(
           children: [
            const HistoryHeader(),
-            16.hight,
+            const SizedBox(height: 16),
             Expanded(child: MobileHistoryList())
 
 

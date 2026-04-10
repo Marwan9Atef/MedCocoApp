@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:valo/core/generated/assets.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 class BeforeSearchItem extends StatelessWidget {
   const BeforeSearchItem({super.key});
@@ -29,7 +28,7 @@ class BeforeSearchItem extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(AppAssets.imagesSearchIcon,height: 20,width: 20,fit: BoxFit.scaleDown,),
-          12.width,
+          const SizedBox(width: 12),
           Text("search by keywords...",style:AppStyles.styleRegular16(context),)
 
         ],

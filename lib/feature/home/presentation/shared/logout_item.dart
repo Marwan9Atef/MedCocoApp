@@ -5,7 +5,6 @@ import 'package:valo/core/generated/assets.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 class LogoutItem extends StatelessWidget {
   const LogoutItem({super.key,});
@@ -37,7 +36,7 @@ class LogoutItem extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 colorFilter: const ColorFilter.mode(AppColor.red, BlendMode.srcIn),
               ),
-              8.width,
+              const SizedBox(width: 8),
               Text(
                 "Logout",
                 style: AppStyles.styleRegular16(context).copyWith(color: AppColor.red),

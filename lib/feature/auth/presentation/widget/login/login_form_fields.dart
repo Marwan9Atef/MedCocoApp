@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valo/core/generated/assets.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import 'package:valo/core/utils/validator.dart';
 import 'package:valo/core/widget/custom_text_form_filed.dart';
 
@@ -21,7 +20,7 @@ class LoginFormFields extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Email Address",style: AppStyles.styleRegular14(context),),
-                        8.hight,
+                        const SizedBox(height: 8),
                         CustomTextFormField(
                           textInputType: TextInputType.emailAddress,
                           hintText: "Email Address",
@@ -29,9 +28,9 @@ class LoginFormFields extends StatelessWidget {
                           validator: (value) => Validator.validateField(value, 'login email'),
                           onSaved: onEmailSaved,
                         ),
-                        20.hight,
+                        const SizedBox(height: 20),
                         Text("Password",style: AppStyles.styleRegular14(context),),
-                        8.hight,
+                        const SizedBox(height: 8),
                         CustomTextFormField(
                           textInputType: TextInputType.visiblePassword,
                           hintText: "Password",

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import '../../data/item_model.dart';
 
@@ -45,7 +44,7 @@ class AppBarItem extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(item.iconPath,height: 20,width: 20,fit: BoxFit.scaleDown,colorFilter: ColorFilter.mode(isActive? AppColor.white:AppColor.gray, BlendMode.srcIn),),
-          8.width,
+          const SizedBox(width: 8),
           Text(item.title,style:AppStyles.styleRegular16(context).copyWith(color: isActive? AppColor.white:AppColor.gray)),
 
 

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/utils/app_snack_bars.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import 'package:valo/core/widget/custom_button.dart';
 import 'package:valo/feature/auth/data/models/login_request_model.dart';
 import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart';
@@ -39,9 +38,9 @@ class LoginFormBody extends StatelessWidget {
             onEmailSaved: onEmailSaved,
             onPasswordSaved: onPasswordSaved,
           ),
-          20.hight,
+          const SizedBox(height: 20),
           const ForgetButton(),
-          20.hight,
+          const SizedBox(height: 20),
           BlocConsumer<LoginCubit, LoginStates>(
             listener: (context, state) {
               if (state is LoginSuccess) {

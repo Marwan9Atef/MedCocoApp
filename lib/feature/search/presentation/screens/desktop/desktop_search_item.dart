@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
 import '../../../../../core/generated/assets.dart';
 import '../../../../../core/routes/route_center.dart';
@@ -31,15 +30,15 @@ class DesktopSearchItem extends StatelessWidget {
             ),
               clipBehavior: Clip.antiAlias,
               child: Image.asset(rayModel.imagePath,fit: BoxFit.fill,height: 200,width: 200,)),
-           16.width,
+          const SizedBox(width: 16),
            Expanded(
              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                  Text(rayModel.title,style: AppStyles.styleRegular20(context),),
-                10.hight,
+                const SizedBox(height: 10),
                 Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
-                15.hight,
+                const SizedBox(height: 15),
                 IntrinsicWidth(
                   child: Container(
                     decoration: ShapeDecoration(
@@ -61,7 +60,7 @@ class DesktopSearchItem extends StatelessWidget {
                           child: Row(
                             children: [
                               SvgPicture.asset(AppAssets.imagesDetailsSvg, fit: BoxFit.scaleDown, height: 16, width: 16),
-                              8.width,
+                              const SizedBox(width: 8),
                               Text("View Details", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white)),
                             ],
                           ),
