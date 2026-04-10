@@ -1,39 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valo/core/utils/context_util.dart';
 import 'package:valo/feature/home/presentation/cubit/page_cubit.dart';
 import 'package:valo/feature/home/presentation/desktop/desktop_app_bar.dart';
-import 'package:valo/feature/upload/presentation/cubit/upload_images_cubit.dart';
-import 'package:valo/view/valo_desktop_layout.dart';
-import 'package:valo/view/valo_mobile_view.dart';
 import '../core/theme/app_color.dart';
-import '../core/widget/adabtive_layout_widget.dart';
+import '../feature/history/presentation/shared/history_page.dart';
+import '../feature/upload/shared/upload_page.dart';
 import '../feature/upload/presentation/widgets/custom_nav_bar.dart';
-
 
 class ValoView extends StatelessWidget {
   const ValoView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => PageCubit()),
-        BlocProvider(create: (context) => UploadImagesCubit()),
-      ],
-      child: Scaffold(
-        appBar: context.screenWidth > 800 ? PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight),
-            child: DesktopAppBar()) : null,
-        backgroundColor: AppColor.anotherBlack,
-        bottomNavigationBar: context.screenWidth > 800
-            ? null
-            : const CustomNavBar(),
-        body: AdaptiveLayoutWidget(
-          mobileLayout: (context) => SafeArea(child: const ValoMobileView()),
-          desktopLayout: (context) => ValoDesktopLayout(),
-        ),
+    return BlocProvider(
+      create: (context) => PageCubit(),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final isDesktop = constraints.maxWidth > 800;
 
+          return Scaffold(
+            appBar: isDesktop
+                ? const PreferredSize(
+                    preferredSize: Size.fromHeight(kToolbarHeight),
+                    child: DesktopAppBar(),
+                  )
+                : null,
+            backgroundColor: AppColor.anotherBlack,
+            bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
+            body: BlocBuilder<PageCubit, int>(
+              builder: (context, currentPage) {
+                return IndexedStack(
+                  index: currentPage,
+                  children: const [
+                    UploadPage(),
+                    HistoryPage(),
+                  ],
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
