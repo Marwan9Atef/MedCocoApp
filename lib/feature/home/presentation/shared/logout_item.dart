@@ -16,35 +16,33 @@ class LogoutItem extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(14),
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: InkWell(
-        onTap: () {
-        context.go(RouteCenter.login);
-        },
-        borderRadius: BorderRadius.circular(14),
-        hoverColor: AppColor.red.withValues(alpha: 0.1),
-        splashColor: AppColor.red.withValues(alpha: 0.2),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                AppAssets.imagesLogoutIcon,
-                height: 20,
-                width: 20,
-                fit: BoxFit.scaleDown,
-                colorFilter: const ColorFilter.mode(AppColor.red, BlendMode.srcIn),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                "Logout",
-                style: AppStyles.styleRegular16(context).copyWith(color: AppColor.red),
-              ),
-            ],
-          ),
+      child: InkWell(
+      mouseCursor: SystemMouseCursors.click,
+      onTap: () {
+      context.go(RouteCenter.login);
+      },
+      borderRadius: BorderRadius.circular(14),
+      hoverColor: AppColor.red.withValues(alpha: 0.1),
+      splashColor: AppColor.red.withValues(alpha: 0.2),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              AppAssets.imagesLogoutIcon,
+              height: 20,
+              width: 20,
+              fit: BoxFit.scaleDown,
+              colorFilter: const ColorFilter.mode(AppColor.red, BlendMode.srcIn),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              "Logout",
+              style: AppStyles.styleRegular16(context).copyWith(color: AppColor.red),
+            ),
+          ],
         ),
       ),
-    ));
+            ));
   }
 }
