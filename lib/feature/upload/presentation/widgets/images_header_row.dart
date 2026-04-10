@@ -23,6 +23,7 @@ class ImagesHeaderRow extends StatelessWidget {
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(6),
           child: InkWell(
+            mouseCursor: SystemMouseCursors.click,
             onTap: () => context.read<UploadImagesCubit>().clear(),
             borderRadius: BorderRadius.circular(6),
             child: Padding(

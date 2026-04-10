@@ -9,14 +9,17 @@ class BeforeSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () async {
-        await showSearch(
-            context: context,
-            delegate: UploadSearch()
-        );
-      },
-      child:const BeforeSearchItem() ,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () async {
+          await showSearch(
+              context: context,
+              delegate: UploadSearch()
+          );
+        },
+        child:const BeforeSearchItem() ,
+      ),
     );
   }
 }

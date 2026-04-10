@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 
 import 'clear_icon.dart';
 
@@ -33,7 +32,7 @@ class DesktopClear extends StatelessWidget {
             child: Row(
               children: [
                 const ClearIcon(),
-                16.width,
+                const SizedBox(width: 16),
                 FittedBox(fit: BoxFit.scaleDown, child: Text("Clear", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.red))),
               ],
             ),

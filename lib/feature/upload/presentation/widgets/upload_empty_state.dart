@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:valo/core/generated/assets.dart';
 import 'package:valo/core/utils/context_util.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import 'package:valo/feature/upload/presentation/widgets/upload_button.dart';
 
 import '../../../../core/theme/app_style.dart';
@@ -29,11 +28,11 @@ class UploadEmptyState extends StatelessWidget {
         child: Column(
           children: [
             SvgPicture.asset(AppAssets.imagesUploadContainer, fit: BoxFit.scaleDown, width: 64, height: 64),
-            16.hight,
+            const SizedBox(height: 16),
             Text("Drag and drop your medical image here", style: AppStyles.styleRegular18(context), textAlign: TextAlign.center),
-            8.hight,
+            const SizedBox(height: 8),
             Text("or click to browse files", style: AppStyles.styleRegular18(context)),
-            15.hight,
+            const SizedBox(height: 15),
             UploadButton(onTap: onPickImages),
           ],
         ),

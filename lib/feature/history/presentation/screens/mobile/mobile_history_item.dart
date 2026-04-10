@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
 import '../../../../../core/routes/route_center.dart';
 import '../../../../../core/theme/app_color.dart';
@@ -34,10 +33,10 @@ class MobileHistoryItem extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 child: Image.asset(rayModel.imagePath,fit: BoxFit.cover,width: double.infinity,)),
           ),
-          10.hight,
+          const SizedBox(height: 10),
 
     Text(rayModel.title,style: AppStyles.styleRegular20(context),),
-          6.hight,
+          const SizedBox(height: 6),
           Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
 
 

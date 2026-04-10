@@ -3,7 +3,6 @@ import 'package:valo/core/generated/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 class AuthHeader extends StatelessWidget {
   const AuthHeader({super.key,required this.title,required this.subtitle});
   final String title;
@@ -14,11 +13,11 @@ class AuthHeader extends StatelessWidget {
     return Column(
       children: [
         SvgPicture.asset(AppAssets.logo),
-        13.hight,
+        const SizedBox(height: 13),
         Text(title,style: AppStyles.styleRegular30(context),),
-        13.hight,
+        const SizedBox(height: 13),
         Text(subtitle,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
-        32.hight,
+        const SizedBox(height: 32),
 
       ],
     );

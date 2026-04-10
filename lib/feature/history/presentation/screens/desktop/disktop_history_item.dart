@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/sizebox_util.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
 import '../../../../../core/generated/assets.dart';
 import '../../../../../core/widget/remove_container.dart';
@@ -32,15 +31,15 @@ class DesktopHistoryItem extends StatelessWidget {
               ),
               clipBehavior: Clip.antiAlias,
               child: Image.asset(rayModel.imagePath,fit: BoxFit.fill,width: 200,height: 200,)),
-          16.width,
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(rayModel.title,style: AppStyles.styleRegular20(context),),
-                10.hight,
+                const SizedBox(height: 10),
        Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
-                15.hight,
+                const SizedBox(height: 15),
                 Row(
                   children: [
                     InkWell(
@@ -52,7 +51,7 @@ context.push(
                         },
                         mouseCursor: SystemMouseCursors.click,
                         child: SvgPicture.asset(AppAssets.detailsContainer,fit: BoxFit.scaleDown,height:36,width: 36,)),
-                    12.width,
+                    const SizedBox(width: 12),
                     RemoveContainer(
                       onTap: (){
                       },
