@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:valo/core/utils/context_util.dart';
 import '../shared/auth_header.dart';
@@ -17,7 +18,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar:kIsWeb? null : AppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

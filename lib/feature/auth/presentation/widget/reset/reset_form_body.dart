@@ -35,70 +35,70 @@ class ResetFormBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ConfirmResetCubit, ConfirmResetStates>(
-      listener: (context, state) {
-        if (state is ConfirmResetSuccess) {
-          AppSnackBars.showSuccessSnackBar(
-            context: context,
-            message: state.message,
-          );
-          context.go(RouteCenter.login);
-        } else if (state is ConfirmResetFailure) {
-          AppSnackBars.showErrorSnackBar(
-            context: context,
-            message: state.error,
-          );
-        }
-      },
-      builder: (context, state) {
-        return AuthContainer(
-          width: 0.35,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  "Enter OTP",
-                  style: AppStyles.styleRegular14(context),
-                ),
-              ),
-              const SizedBox(height: 20),
-              CodeForm(onCompleted: onOtpCompleted),
-              const SizedBox(height: 20),
-              Text(
-                "New Password",
-                style: AppStyles.styleRegular14(context),
-              ),
-              const SizedBox(height: 8),
-              CustomTextFormField(
-                textInputType: TextInputType.visiblePassword,
-                hintText: "Enter new password",
-                prefixIconPath: AppAssets.password,
-                isPassword: true,
-                validator: (value) =>
-                    Validator.validateField(value, 'password'),
-                controller: passwordController,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Confirm Password",
-                style: AppStyles.styleRegular14(context),
-              ),
-              const SizedBox(height: 8),
-              CustomTextFormField(
-                textInputType: TextInputType.visiblePassword,
-                hintText: "Confirm new password",
-                isPassword: true,
-                prefixIconPath: AppAssets.password,
-                validator: (value) => Validator.validateField(
-                  value,
-                  'confirmPassword',
-                  password: passwordController.text,
-                ),
-                controller: confirmPasswordController,
-              ),
-              const SizedBox(height: 20),
-              CustomButton(
+    return AuthContainer(
+      width: 0.35,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Text(
+              "Enter OTP",
+              style: AppStyles.styleRegular14(context),
+            ),
+          ),
+          const SizedBox(height: 20),
+          CodeForm(onCompleted: onOtpCompleted),
+          const SizedBox(height: 20),
+          Text(
+            "New Password",
+            style: AppStyles.styleRegular14(context),
+          ),
+          const SizedBox(height: 8),
+          CustomTextFormField(
+            textInputType: TextInputType.visiblePassword,
+            hintText: "Enter new password",
+            prefixIconPath: AppAssets.password,
+            isPassword: true,
+            validator: (value) =>
+                Validator.validateField(value, 'password'),
+            controller: passwordController,
+          ),
+          const SizedBox(height: 20),
+          Text(
+            "Confirm Password",
+            style: AppStyles.styleRegular14(context),
+          ),
+          const SizedBox(height: 8),
+          CustomTextFormField(
+            textInputType: TextInputType.visiblePassword,
+            hintText: "Confirm new password",
+            isPassword: true,
+            prefixIconPath: AppAssets.password,
+            validator: (value) => Validator.validateField(
+              value,
+              'confirmPassword',
+              password: passwordController.text,
+            ),
+            controller: confirmPasswordController,
+          ),
+          const SizedBox(height: 20),
+          BlocConsumer<ConfirmResetCubit, ConfirmResetStates>(
+            listener: (context, state) {
+              if (state is ConfirmResetSuccess) {
+                AppSnackBars.showSuccessSnackBar(
+                  context: context,
+                  message: state.message,
+                );
+                Router.neglect(context, () => context.go(RouteCenter.login));
+              } else if (state is ConfirmResetFailure) {
+                AppSnackBars.showErrorSnackBar(
+                  context: context,
+                  message: state.error,
+                );
+              }
+            },
+            builder: (context, state) {
+              return CustomButton(
                 isLoading: state is ConfirmResetLoading,
                 text: "Reset Password",
                 onPressed: () {
@@ -113,13 +113,13 @@ class ResetFormBody extends StatelessWidget {
                     );
                   }
                 },
-              ),
-              const SizedBox(height: 20),
-              Center(child: ResendButton(email: email)),
-            ],
+              );
+            },
           ),
-        );
-      },
+          const SizedBox(height: 20),
+          Center(child: ResendButton(email: email)),
+        ],
+      ),
     );
   }
 }

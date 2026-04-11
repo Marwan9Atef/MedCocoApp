@@ -20,7 +20,7 @@ class CustomNavBar extends StatelessWidget {
           selectedIndex: currentTab,
           onDestinationSelected: (index) {
             if (index == _logoutIndex) {
-              context.go(RouteCenter.login);
+              Router.neglect(context, () => context.go(RouteCenter.login));
               return;
             }
             if (index == currentTab) return;

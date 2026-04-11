@@ -50,7 +50,7 @@ class RegisterFormBody extends StatelessWidget {
                   context: context,
                   message: state.message,
                 );
-                context.pushReplacement(RouteCenter.view);
+                Router.neglect(context, () => context.go(RouteCenter.view));
               } else if (state is RegisterFailure) {
                 AppSnackBars.showErrorSnackBar(
                   context: context,
@@ -79,7 +79,7 @@ class RegisterFormBody extends StatelessWidget {
           ),
           const Divider(height: 40, color: Color(0xFF27272A)),
           NavTextButton(
-            onTap: () => context.pushReplacement(RouteCenter.login),
+            onTap: () =>Router.neglect(context, () => context.go(RouteCenter.login)),
             prefText: "Already have an account? ",
             suffixText: "Sign in",
           ),
