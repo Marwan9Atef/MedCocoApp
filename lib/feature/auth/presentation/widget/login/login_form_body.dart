@@ -48,7 +48,7 @@ class LoginFormBody extends StatelessWidget {
                   context: context,
                   message: state.message,
                 );
-                context.pushReplacement(RouteCenter.view);
+                Router.neglect(context, () => context.go(RouteCenter.view));
               } else if (state is LoginFailure) {
                 AppSnackBars.showErrorSnackBar(
                   context: context,
@@ -76,7 +76,7 @@ class LoginFormBody extends StatelessWidget {
           ),
           const Divider(height: 40, color: Color(0xFF27272A)),
           NavTextButton(
-            onTap: () => context.pushReplacement(RouteCenter.register),
+            onTap: () => Router.neglect(context, () => context.go(RouteCenter.register)),
             prefText: "Don't have an account? ",
             suffixText: "Sign Up",
           ),

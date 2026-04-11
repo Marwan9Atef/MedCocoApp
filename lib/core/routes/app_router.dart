@@ -19,13 +19,16 @@ class AppRouter {
   static final routes = GoRouter(
     routes: [
       GoRoute(
+     redirect: (context, state) => null,
         path: RouteCenter.login,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             child: BlocProvider(
               create: (context) => serviceLocator<LoginCubit>(),
               child: const LoginScreen(),
+              
             ),
+            
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) =>
                     FadeTransition(opacity: animation, child: child),

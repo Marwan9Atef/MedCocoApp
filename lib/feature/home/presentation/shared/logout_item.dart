@@ -19,7 +19,7 @@ class LogoutItem extends StatelessWidget {
       child: InkWell(
       mouseCursor: SystemMouseCursors.click,
       onTap: () {
-      context.go(RouteCenter.login);
+      Router.neglect(context, () => context.go(RouteCenter.login));
       },
       borderRadius: BorderRadius.circular(14),
       hoverColor: AppColor.red.withValues(alpha: 0.1),

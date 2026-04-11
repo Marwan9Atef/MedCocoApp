@@ -9,7 +9,7 @@ import '../../../../../core/generated/assets.dart';
 import '../../../../../core/widget/remove_container.dart';
 
 class DesktopHistoryItem extends StatelessWidget {
-  const DesktopHistoryItem({super.key,required this.rayModel});
+  const DesktopHistoryItem({super.key, required this.rayModel});
   final RayModel rayModel;
 
   @override
@@ -18,61 +18,65 @@ class DesktopHistoryItem extends StatelessWidget {
       margin: const EdgeInsets.only(top: 16),
       padding: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
-        color:const Color(0xff18181B),
+        color: const Color(0xff18181B),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
-              borderRadius: BorderRadiusGeometry.only(
-                 topLeft: Radius.circular(14),
-                 bottomLeft: Radius.circular(14),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: Image.asset(rayModel.imagePath,fit: BoxFit.fill,width: 200,height: 200,)),
+            borderRadius: BorderRadiusGeometry.only(
+              topLeft: Radius.circular(14),
+              bottomLeft: Radius.circular(14),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Image.asset(
+              rayModel.imagePath,
+              fit: BoxFit.fill,
+              width: 200,
+              height: 200,
+            ),
+          ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(rayModel.title,style: AppStyles.styleRegular20(context),),
+                Text(rayModel.title, style: AppStyles.styleRegular20(context)),
                 const SizedBox(height: 10),
-       Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
+                Text(
+                  rayModel.description,
+                  style: AppStyles.styleRegular16(
+                    context,
+                  ).copyWith(color: AppColor.gray),
+                ),
                 const SizedBox(height: 15),
                 Row(
                   children: [
                     InkWell(
-                        onTap: (){
-context.push(
-  RouteCenter.fullScreenImage,
-  extra: rayModel.imagePath,
-);
-                        },
-                        mouseCursor: SystemMouseCursors.click,
-                        child: SvgPicture.asset(AppAssets.detailsContainer,fit: BoxFit.scaleDown,height:36,width: 36,)),
-                    const SizedBox(width: 12),
-                    RemoveContainer(
-                      onTap: (){
+                      onTap: () {
+                        context.push(
+                          RouteCenter.fullScreenImage,
+                          extra: rayModel.imagePath,
+                        );
                       },
+                      mouseCursor: SystemMouseCursors.click,
+                      child: SvgPicture.asset(
+                        AppAssets.detailsContainer,
+                        fit: BoxFit.scaleDown,
+                        height: 36,
+                        width: 36,
+                      ),
                     ),
-
-
-
+                    const SizedBox(width: 12),
+                    RemoveContainer(onTap: () {}),
                   ],
-                )
-
+                ),
               ],
             ),
           ),
-
-
-
-
         ],
       ),
     );
   }
 }
-
-
