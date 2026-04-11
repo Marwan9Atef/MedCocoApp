@@ -25,6 +25,8 @@ import 'package:valo/feature/auth/data/service/remote/auth_api_medical_service.d
 import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart'
     as _i64;
 import 'package:valo/feature/auth/domain/auth_repo.dart' as _i125;
+import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart'
+    as _i226;
 import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart'
     as _i617;
 import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart'
@@ -56,6 +58,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i64.AuthRemoteMedicalService>(
       () => _i723.AuthApiMedicalService(apiClient: gh<_i777.ApiClient>()),
+    );
+    gh.lazySingleton<_i226.AuthCubit>(
+      () => _i226.AuthCubit(gh<_i852.AuthLocalMedicalService>()),
     );
     gh.lazySingleton<_i125.AuthRepo>(
       () => _i997.AuthRepoImpl(

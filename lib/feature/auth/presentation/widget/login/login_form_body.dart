@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/utils/app_snack_bars.dart';
 import 'package:valo/core/widget/custom_button.dart';
 import 'package:valo/feature/auth/data/models/login_request_model.dart';
+import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:valo/feature/auth/presentation/cubit/login/login_states.dart';
 import '../../shared/auth_container.dart';
@@ -44,11 +47,12 @@ class LoginFormBody extends StatelessWidget {
           BlocConsumer<LoginCubit, LoginStates>(
             listener: (context, state) {
               if (state is LoginSuccess) {
+                TextInput.finishAutofillContext();
                 AppSnackBars.showSuccessSnackBar(
                   context: context,
                   message: state.message,
                 );
-                Router.neglect(context, () => context.go(RouteCenter.view));
+                serviceLocator<AuthCubit>().setAuthenticated();
               } else if (state is LoginFailure) {
                 AppSnackBars.showErrorSnackBar(
                   context: context,
