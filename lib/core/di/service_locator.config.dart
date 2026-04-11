@@ -25,6 +25,8 @@ import 'package:valo/feature/auth/data/service/remote/auth_api_medical_service.d
 import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart'
     as _i64;
 import 'package:valo/feature/auth/domain/auth_repo.dart' as _i125;
+import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart'
+    as _i226;
 import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart'
     as _i617;
 import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart'
@@ -33,6 +35,12 @@ import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i728;
 import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart'
     as _i250;
+import 'package:valo/feature/upload/data/repo/upload_repo_impl.dart' as _i909;
+import 'package:valo/feature/upload/data/service/remote/upload_remote_medical_service.dart'
+    as _i241;
+import 'package:valo/feature/upload/domain/upload_repo.dart' as _i852;
+import 'package:valo/feature/upload/presentation/cubit/upload_process_cubit.dart'
+    as _i465;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -57,6 +65,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i64.AuthRemoteMedicalService>(
       () => _i723.AuthApiMedicalService(apiClient: gh<_i777.ApiClient>()),
     );
+    gh.lazySingleton<_i241.UploadRemoteMedicalService>(
+      () => registerModule.uploadRemoteService(
+        gh<_i852.AuthLocalMedicalService>(),
+        gh<_i777.ApiClient>(),
+      ),
+    );
+    gh.lazySingleton<_i226.AuthCubit>(
+      () => _i226.AuthCubit(gh<_i852.AuthLocalMedicalService>()),
+    );
     gh.lazySingleton<_i125.AuthRepo>(
       () => _i997.AuthRepoImpl(
         gh<_i64.AuthRemoteMedicalService>(),
@@ -72,6 +89,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i728.LoginCubit>(() => _i728.LoginCubit(gh<_i125.AuthRepo>()));
     gh.factory<_i250.RegisterCubit>(
       () => _i250.RegisterCubit(gh<_i125.AuthRepo>()),
+    );
+    gh.lazySingleton<_i852.UploadRepo>(
+      () => _i909.UploadRepoImpl(gh<_i241.UploadRemoteMedicalService>()),
+    );
+    gh.factory<_i465.UploadProcessCubit>(
+      () => _i465.UploadProcessCubit(gh<_i852.UploadRepo>()),
     );
     return this;
   }

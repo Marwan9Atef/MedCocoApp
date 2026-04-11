@@ -26,37 +26,37 @@ class ForgetFormBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ForgetCubit, ForgetStates>(
-      listener: (context, state) {
-        if (state is ForgetSuccess) {
-          AppSnackBars.showSuccessSnackBar(
-            context: context,
-            message: state.message,
-          );
-          context.go(RouteCenter.reset, extra: emailGetter());
-        } else if (state is ForgetFailure) {
-          AppSnackBars.showErrorSnackBar(
-            context: context,
-            message: state.error,
-          );
-        }
-      },
-      builder: (context, state) {
-        return AuthContainer(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Email Address", style: AppStyles.styleRegular14(context)),
-              const SizedBox(height: 8),
-              CustomTextFormField(
-                textInputType: TextInputType.emailAddress,
-                hintText: "Email Address",
-                prefixIconPath: AppAssets.email,
-                validator: (value) => Validator.validateField(value, 'email'),
-                onSaved: onEmailSaved,
-              ),
-              const SizedBox(height: 20),
-              CustomButton(
+    return AuthContainer(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Email Address", style: AppStyles.styleRegular14(context)),
+          const SizedBox(height: 8),
+          CustomTextFormField(
+            textInputType: TextInputType.emailAddress,
+            hintText: "Email Address",
+            prefixIconPath: AppAssets.email,
+            validator: (value) => Validator.validateField(value, 'email'),
+            onSaved: onEmailSaved,
+          ),
+          const SizedBox(height: 20),
+          BlocConsumer<ForgetCubit, ForgetStates>(
+            listener: (context, state) {
+              if (state is ForgetSuccess) {
+                AppSnackBars.showSuccessSnackBar(
+                  context: context,
+                  message: state.message,
+                );
+                Router.neglect(context, () => context.go(RouteCenter.reset, extra: emailGetter()));
+              } else if (state is ForgetFailure) {
+                AppSnackBars.showErrorSnackBar(
+                  context: context,
+                  message: state.error,
+                );
+              }
+            },
+            builder: (context, state) {
+              return CustomButton(
                 isLoading: state is ForgetLoading,
                 text: "Send OTP",
                 onPressed: () {
@@ -65,11 +65,11 @@ class ForgetFormBody extends StatelessWidget {
                     context.read<ForgetCubit>().forget(emailGetter()!);
                   }
                 },
-              ),
-            ],
+              );
+            },
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

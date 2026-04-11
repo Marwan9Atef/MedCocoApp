@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
+import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 
 class LogoutItem extends StatelessWidget {
   const LogoutItem({super.key,});
@@ -19,7 +19,7 @@ class LogoutItem extends StatelessWidget {
       child: InkWell(
       mouseCursor: SystemMouseCursors.click,
       onTap: () {
-      context.go(RouteCenter.login);
+        serviceLocator<AuthCubit>().logout();
       },
       borderRadius: BorderRadius.circular(14),
       hoverColor: AppColor.red.withValues(alpha: 0.1),

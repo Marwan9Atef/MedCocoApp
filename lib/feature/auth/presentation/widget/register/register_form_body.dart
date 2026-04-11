@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/routes/route_center.dart';
 import 'package:valo/core/utils/app_snack_bars.dart';
 import 'package:valo/core/widget/custom_button.dart';
 import 'package:valo/feature/auth/data/models/register_request_model.dart';
+import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart';
 import 'package:valo/feature/auth/presentation/cubit/register/register_states.dart';
 import '../../shared/auth_container.dart';
@@ -46,11 +49,12 @@ class RegisterFormBody extends StatelessWidget {
           BlocConsumer<RegisterCubit, RegisterStates>(
             listener: (context, state) {
               if (state is RegisterSuccess) {
+                TextInput.finishAutofillContext();
                 AppSnackBars.showSuccessSnackBar(
                   context: context,
                   message: state.message,
                 );
-                context.pushReplacement(RouteCenter.view);
+                serviceLocator<AuthCubit>().setAuthenticated();
               } else if (state is RegisterFailure) {
                 AppSnackBars.showErrorSnackBar(
                   context: context,
@@ -79,7 +83,7 @@ class RegisterFormBody extends StatelessWidget {
           ),
           const Divider(height: 40, color: Color(0xFF27272A)),
           NavTextButton(
-            onTap: () => context.pushReplacement(RouteCenter.login),
+            onTap: () =>Router.neglect(context, () => context.go(RouteCenter.login)),
             prefText: "Already have an account? ",
             suffixText: "Sign in",
           ),

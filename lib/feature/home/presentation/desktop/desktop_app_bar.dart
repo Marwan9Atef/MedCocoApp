@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/feature/home/presentation/shared/logout_item.dart';
 
 import '../../../../core/theme/app_style.dart';
@@ -24,11 +25,15 @@ class DesktopAppBar extends StatelessWidget {
             
             ...List.generate(2, (index) =>
               InkWell(
+                
                 onTap: () {
                   if (currentTab == index) return;
                   context.read<PageCubit>().setValue(index);
                 },
                 mouseCursor: SystemMouseCursors.click,
+                hoverColor: AppColor.blue.withValues(alpha: 0.2),
+                focusColor: AppColor.blue.withValues(alpha: 0.2),
+                splashColor: AppColor.blue.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
                 child: AppBarItem(
                   isActive: currentTab == index,

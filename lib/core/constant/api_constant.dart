@@ -6,4 +6,5 @@ class ApiConstant {
   static String get registerEndpoint => dotenv.env['registerEndpoint'] ?? '';
   static String get passwordResetEndpoint => dotenv.env['passwordResetEndpoint'] ?? '';
   static String get confirmResetPasswordEndpoint => dotenv.env['confirmResetPasswordEndpoint'] ?? '';
+  static String get uploadImageEndpoint => dotenv.env['uploadImageEndpoint'] ?? '';
 }

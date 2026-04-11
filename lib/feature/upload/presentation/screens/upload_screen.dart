@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/theme/app_color.dart';
 import 'package:valo/core/theme/app_style.dart';
 import 'package:valo/feature/upload/presentation/cubit/upload_images_cubit.dart';
+import 'package:valo/feature/upload/presentation/cubit/upload_process_cubit.dart';
+
 import '../widgets/before_search.dart';
 import '../widgets/upload_item.dart';
 
@@ -20,8 +23,13 @@ class UploadScreen extends StatelessWidget {
         const SizedBox(height: 34),
         const BeforeSearch(),
         const SizedBox(height: 23),
-        BlocProvider(
-          create: (context) => UploadImagesCubit(),
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => UploadImagesCubit()),
+            BlocProvider(
+              create: (_) => serviceLocator<UploadProcessCubit>()..init(),
+            ),
+          ],
           child: const UploadItem(),
         ),
       ],
