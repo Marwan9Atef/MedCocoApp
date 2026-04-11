@@ -15,17 +15,19 @@ class UploadPage extends StatelessWidget {
             ? const EdgeInsets.only(left: 63, right: 63, top: 16)
             : const EdgeInsets.only(left: 15, right: 15, top: 16);
 
-        return Padding(
-          padding: padding,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment:
-                  isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
-              children: [
-                const UploadScreen(),
-                const SizedBox(height: 32),
-                if (isDesktop) const InfoItemRow() else const InfoItemColumn(),
-              ],
+        return SafeArea(
+          child: Padding(
+            padding: padding,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment:
+                    isDesktop ? MainAxisAlignment.center : MainAxisAlignment.start,
+                children: [
+                  const UploadScreen(),
+                  const SizedBox(height: 32),
+                  if (isDesktop) const InfoItemRow() else const InfoItemColumn(),
+                ],
+              ),
             ),
           ),
         );

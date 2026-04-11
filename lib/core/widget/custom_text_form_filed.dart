@@ -17,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onChanged,
     this.onSaved,
     this.maxLines = 1,
+    this.autofillHints,
   });
 
   final TextEditingController? controller;
@@ -28,6 +29,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool isPassword;
   final int maxLines;
   final String hintText;
+  final Iterable<String>? autofillHints;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -46,6 +48,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       keyboardType: widget.textInputType,
       maxLines: widget.maxLines,
       obscureText: isObscure,
+      autofillHints: widget.autofillHints,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       cursorColor: AppColor.primaryColor,
       style: AppStyles.styleRegular16(context).copyWith(

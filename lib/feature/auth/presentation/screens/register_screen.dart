@@ -25,9 +25,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Center(
               heightFactor: context.screenHeight > 1080 ? 1.7 : 1,
-              child: Form(
-                key: _formKey,
-                child: Column(
+              child: AutofillGroup(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const AuthHeader(
@@ -44,6 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       passwordGetter: () => _password,
                     ),
                   ],
+                  ),
                 ),
               ),
             ),
