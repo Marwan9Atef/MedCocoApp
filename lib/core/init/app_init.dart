@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:valo/core/di/service_locator.dart';
 import 'package:valo/core/init/dotenv_init.dart';
+import 'package:valo/core/init/file_downloader_init_stub.dart'
+    if (dart.library.io) 'package:valo/core/init/file_downloader_init.dart';
 import 'package:valo/core/init/observer_init.dart';
 import 'package:valo/core/init/url_strategy_stub.dart'
     if (dart.library.html) 'package:valo/core/init/url_strategy_web.dart';
@@ -13,6 +16,8 @@ Future<void> appInit() async {
   await configureDependencies();
   await serviceLocator<AuthCubit>().checkAuth();
   await initDesktopWindow();
+  await initFileDownloader();
   observerInit();
   configureUrlStrategy();
 }
+

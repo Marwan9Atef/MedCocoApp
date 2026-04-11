@@ -20,7 +20,7 @@ class ApiClient {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          // 'ngrok-skip-browser-warning': 'true',
+          'ngrok-skip-browser-warning': 'true',
         },
       ),
     );
@@ -61,8 +61,16 @@ class ApiClient {
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
+    ProgressCallback? onSendProgress,
+    CancelToken? cancelToken,
   }) =>
-      _dio.post(path, data: data, queryParameters: queryParameters);
+      _dio.post(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        onSendProgress: onSendProgress,
+        cancelToken: cancelToken,
+      );
 
   Future<Response> put(
     String path, {

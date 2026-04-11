@@ -6,9 +6,9 @@ import 'package:valo/view/valo.dart';
 
 
 void main() async {
-await appInit();
+await appInit();  
   runApp(DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => const Valo()));
 }
 
