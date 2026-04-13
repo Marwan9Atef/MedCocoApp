@@ -15,6 +15,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:valo/core/di/register_module.dart' as _i571;
 import 'package:valo/core/network/api_client.dart' as _i777;
+import 'package:valo/core/network/auth_token_refresher.dart' as _i557;
 import 'package:valo/feature/auth/data/repo/auth_repo_impl.dart' as _i997;
 import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart'
     as _i852;
@@ -57,28 +58,46 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => registerModule.secureStorage,
     );
-    gh.lazySingleton<_i777.ApiClient>(() => _i777.ApiClient());
     gh.lazySingleton<_i852.AuthLocalMedicalService>(
       () =>
           _i360.AuthLocalSecureStorageService(gh<_i558.FlutterSecureStorage>()),
     );
-    gh.lazySingleton<_i64.AuthRemoteMedicalService>(
-      () => _i723.AuthApiMedicalService(apiClient: gh<_i777.ApiClient>()),
+    gh.lazySingleton<_i226.AuthCubit>(
+      () => _i226.AuthCubit(gh<_i852.AuthLocalMedicalService>()),
+    );
+    gh.lazySingleton<_i557.AuthTokenRefresher>(
+      () => _i557.AuthTokenRefresher(
+        gh<_i852.AuthLocalMedicalService>(),
+        gh<_i226.AuthCubit>(),
+      ),
+    );
+    gh.lazySingleton<_i777.ApiClient>(
+      () => _i777.ApiClient(
+        gh<_i852.AuthLocalMedicalService>(),
+        gh<_i557.AuthTokenRefresher>(),
+      ),
     );
     gh.lazySingleton<_i241.UploadRemoteMedicalService>(
       () => registerModule.uploadRemoteService(
         gh<_i852.AuthLocalMedicalService>(),
         gh<_i777.ApiClient>(),
+        gh<_i557.AuthTokenRefresher>(),
       ),
     );
-    gh.lazySingleton<_i226.AuthCubit>(
-      () => _i226.AuthCubit(gh<_i852.AuthLocalMedicalService>()),
+    gh.lazySingleton<_i852.UploadRepo>(
+      () => _i909.UploadRepoImpl(gh<_i241.UploadRemoteMedicalService>()),
+    );
+    gh.lazySingleton<_i64.AuthRemoteMedicalService>(
+      () => _i723.AuthApiMedicalService(apiClient: gh<_i777.ApiClient>()),
     );
     gh.lazySingleton<_i125.AuthRepo>(
       () => _i997.AuthRepoImpl(
         gh<_i64.AuthRemoteMedicalService>(),
         gh<_i852.AuthLocalMedicalService>(),
       ),
+    );
+    gh.factory<_i465.UploadProcessCubit>(
+      () => _i465.UploadProcessCubit(gh<_i852.UploadRepo>()),
     );
     gh.factory<_i617.ConfirmResetCubit>(
       () => _i617.ConfirmResetCubit(gh<_i125.AuthRepo>()),
@@ -89,12 +108,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i728.LoginCubit>(() => _i728.LoginCubit(gh<_i125.AuthRepo>()));
     gh.factory<_i250.RegisterCubit>(
       () => _i250.RegisterCubit(gh<_i125.AuthRepo>()),
-    );
-    gh.lazySingleton<_i852.UploadRepo>(
-      () => _i909.UploadRepoImpl(gh<_i241.UploadRemoteMedicalService>()),
-    );
-    gh.factory<_i465.UploadProcessCubit>(
-      () => _i465.UploadProcessCubit(gh<_i852.UploadRepo>()),
     );
     return this;
   }
