@@ -25,6 +25,31 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
   List<String>? _pendingRetryPaths;
   bool _authRetryUsed = false;
 
+  /// Native uploads bypass [ApiClient]; detect auth failures the same way the
+  /// API may return them (401/403 or JSON with `invalid_token`).
+  bool _shouldRetryAfterTokenRefresh(int? statusCode, String? body) {
+    if (_authRetryUsed || _pendingRetryPaths == null) return false;
+    if (_responseIndicatesInvalidToken(body)) return true;
+    return statusCode == 401 || statusCode == 403;
+  }
+
+  bool _responseIndicatesInvalidToken(String? body) {
+    if (body == null || body.isEmpty) return false;
+    try {
+      final dynamic decoded = jsonDecode(body);
+      if (decoded is Map<String, dynamic>) {
+        final code = decoded['error_code']?.toString().toLowerCase();
+        if (code == 'invalid_token' || code == 'token_expired') {
+          return true;
+        }
+      }
+    } catch (_) {}
+    final lower = body.toLowerCase();
+    return lower.contains('invalid_token') ||
+        (lower.contains('token') &&
+            (lower.contains('invalid') || lower.contains('expired')));
+  }
+
   void _handleUpdate(TaskUpdate update) {
     if (update is TaskProgressUpdate) {
       _progressController.add(update.progress);
@@ -33,18 +58,45 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
         update.status.isFinalState) {
       if (update.status == TaskStatus.complete) {
         final body = update.responseBody ?? '[]';
-        final list = (jsonDecode(body) as List<dynamic>)
+        dynamic decoded;
+        try {
+          decoded = jsonDecode(body);
+        } catch (_) {
+          _activeCompleter?.completeError(Exception(body));
+          _clearActiveUpload();
+          return;
+        }
+        if (decoded is Map<String, dynamic>) {
+          if (_shouldRetryAfterTokenRefresh(
+            update.responseStatusCode,
+            body,
+          )) {
+            _authRetryUsed = true;
+            unawaited(_retryUploadAfterAuthFailure());
+            return;
+          }
+          _activeCompleter?.completeError(Exception(body));
+          _clearActiveUpload();
+          return;
+        }
+        if (decoded is! List<dynamic>) {
+          _activeCompleter?.completeError(Exception(body));
+          _clearActiveUpload();
+          return;
+        }
+        final list = decoded
             .map((e) =>
                 UploadResponseModel.fromJson(e as Map<String, dynamic>))
             .toList();
         _activeCompleter?.complete(list);
         _clearActiveUpload();
       } else {
-        if (update.responseStatusCode == 401 &&
-            !_authRetryUsed &&
-            _pendingRetryPaths != null) {
+        if (_shouldRetryAfterTokenRefresh(
+          update.responseStatusCode,
+          update.responseBody,
+        )) {
           _authRetryUsed = true;
-          unawaited(_retryUploadAfterUnauthorized());
+          unawaited(_retryUploadAfterAuthFailure());
           return;
         }
         _activeCompleter?.completeError(
@@ -55,7 +107,7 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
     }
   }
 
-  Future<void> _retryUploadAfterUnauthorized() async {
+  Future<void> _retryUploadAfterAuthFailure() async {
     final paths = _pendingRetryPaths;
     if (paths == null) {
       return;
