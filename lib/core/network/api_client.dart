@@ -47,7 +47,8 @@ class ApiClient {
           handler.next(options);
         },
         onError: (err, handler) async {
-          if (err.response?.statusCode != 401) {
+          final code = err.response?.statusCode;
+          if (code != 401 && code != 403) {
             handler.next(err);
             return;
           }
