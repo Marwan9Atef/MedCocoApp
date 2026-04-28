@@ -1,0 +1,29 @@
+# Generate icons: dart run flutter_launcher_icons
+# (Paths use forward slashes; they work on Windows with Flutter tooling.)
+flutter_launcher_icons:
+  image_path: "assets/images/valo_app_icon.png"
+
+  # Android: use default mipmap name `ic_launcher` to match AndroidManifest.xml
+  android: true
+  min_sdk_android: 21
+  adaptive_icon_background: "#000000"
+  adaptive_icon_foreground: "assets/images/valo_app_icon.png"
+  adaptive_icon_foreground_inset: 16
+
+  ios: true
+  remove_alpha_ios: true
+
+  web:
+    generate: true
+    image_path: "assets/images/valo_app_icon.png"
+    background_color: "#000000"
+    theme_color: "#000000"
+
+  windows:
+    generate: true
+    image_path: "assets/images/valo_app_icon.png"
+    icon_size: 256
+
+  macos:
+    generate: true
+    image_path: "assets/images/valo_app_icon.png"

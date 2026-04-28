@@ -1,10 +1,10 @@
 class RouteCenter {
-  static const String login = '/';
-  static const String register = '/register';
-  static const String view = '/home';
-  static const String  search="/search";
-  static const String reset = "/reset";
-  static const String forget = "/forget";
-  static const String fullScreenImage = "/fullScreenImage";
+  static const String login = '/dfsd';
+  static const String register = '/Register';
+  static const String view = '/';
+  static const String  search="/Search";
+  static const String reset = "/Reset";
+  static const String forget = "/Forget";
+  static const String fullScreenImage = "/FullScreenImage";
 
 }
