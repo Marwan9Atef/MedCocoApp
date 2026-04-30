@@ -34,11 +34,12 @@ class AppRouter {
       final isAuthRoute = _authRoutes.contains(state.matchedLocation);
 
       if (status == AuthStatus.unauthenticated && !isAuthRoute) {
-        return RouteCenter.view;
+        return RouteCenter.login;
       }
 
       if (status == AuthStatus.authenticated &&
-          state.matchedLocation == RouteCenter.login) {
+          (state.matchedLocation == RouteCenter.login ||
+          state.matchedLocation == RouteCenter.register)) {
         return RouteCenter.view;
       }
 

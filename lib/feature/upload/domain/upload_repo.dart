@@ -4,7 +4,7 @@ import '../../../core/failure/failure.dart';
 import '../data/models/upload_response_model.dart';
 
 abstract class UploadRepo {
-  Future<Either<Failure, List<UploadResponseModel>>> uploadImages(
+  Future<Either<Failure, UploadResponseModel>> uploadImages(
     List<String> filePaths,
   );
 
