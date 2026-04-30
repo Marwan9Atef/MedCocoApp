@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:valo/feature/history/presentation/widgets/history_mobile_image.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
-import '../../../../../core/routes/route_center.dart';
 import '../../../../../core/theme/app_color.dart';
 import '../../../../../core/theme/app_style.dart';
 
@@ -21,18 +20,7 @@ class MobileHistoryItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InkWell(
-            onTap: (){
-              context.push(RouteCenter.fullScreenImage,extra: rayModel.imagePath);
-            },
-            mouseCursor: SystemMouseCursors.click,
-            child: ClipRRect(
-                borderRadius: BorderRadiusGeometry.all(
-                  Radius.circular(14),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(rayModel.imagePath,fit: BoxFit.cover,width: double.infinity,)),
-          ),
+       HistoryMobileImage(imagePath: rayModel.imagePath,),
           const SizedBox(height: 10),
 
     Text(rayModel.title,style: AppStyles.styleRegular20(context),),

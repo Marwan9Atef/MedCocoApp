@@ -57,6 +57,8 @@ dependencies:
   flutter_secure_storage: ^10.0.0
   flutter_dotenv: ^5.2.1
   background_downloader: ^8.5.5
+  flutter_animate: ^4.5.2
+
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +72,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   injectable_generator: ^2.8.1
   build_runner: ^2.7.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -38,7 +38,8 @@ class AppRouter {
       }
 
       if (status == AuthStatus.authenticated &&
-          state.matchedLocation == RouteCenter.login) {
+          (state.matchedLocation == RouteCenter.login ||
+          state.matchedLocation == RouteCenter.register)) {
         return RouteCenter.view;
       }
 

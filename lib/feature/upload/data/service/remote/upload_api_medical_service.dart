@@ -20,7 +20,7 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
   static const _uploadGroup = 'medical_image_upload';
 
   final _progressController = StreamController<double>.broadcast();
-  Completer<List<UploadResponseModel>>? _activeCompleter;
+  Completer<UploadResponseModel>? _activeCompleter;
   String? _activeTaskId;
   List<String>? _pendingRetryPaths;
   bool _authRetryUsed = false;
@@ -57,7 +57,7 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
         update.task.taskId == _activeTaskId &&
         update.status.isFinalState) {
       if (update.status == TaskStatus.complete) {
-        final body = update.responseBody ?? '[]';
+        final body = update.responseBody ?? '{}';
         dynamic decoded;
         try {
           decoded = jsonDecode(body);
@@ -66,29 +66,18 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
           _clearActiveUpload();
           return;
         }
-        if (decoded is Map<String, dynamic>) {
-          if (_shouldRetryAfterTokenRefresh(
-            update.responseStatusCode,
-            body,
-          )) {
-            _authRetryUsed = true;
-            unawaited(_retryUploadAfterAuthFailure());
-            return;
-          }
+        if (decoded is! Map<String, dynamic>) {
           _activeCompleter?.completeError(Exception(body));
           _clearActiveUpload();
           return;
         }
-        if (decoded is! List<dynamic>) {
-          _activeCompleter?.completeError(Exception(body));
-          _clearActiveUpload();
+        if (_shouldRetryAfterTokenRefresh(update.responseStatusCode, body)) {
+          _authRetryUsed = true;
+          unawaited(_retryUploadAfterAuthFailure());
           return;
         }
-        final list = decoded
-            .map((e) =>
-                UploadResponseModel.fromJson(e as Map<String, dynamic>))
-            .toList();
-        _activeCompleter?.complete(list);
+        final response = UploadResponseModel.fromJson(decoded);
+        _activeCompleter?.complete(response);
         _clearActiveUpload();
       } else {
         if (_shouldRetryAfterTokenRefresh(
@@ -156,13 +145,11 @@ class UploadApiMedicalService implements UploadRemoteMedicalService {
   }
 
   @override
-  Future<List<UploadResponseModel>> enqueueUpload(
-    List<String> filePaths,
-  ) async {
+  Future<UploadResponseModel> enqueueUpload(List<String> filePaths) async {
     _pendingRetryPaths = filePaths;
     _authRetryUsed = false;
 
-    _activeCompleter = Completer<List<UploadResponseModel>>();
+    _activeCompleter = Completer<UploadResponseModel>();
     await _enqueueTask(filePaths);
 
     return _activeCompleter!.future;
