@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
-import 'package:valo/feature/auth/domain/auth_repo.dart';
-import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_states.dart';
+import 'package:medcoco/feature/auth/data/models/confirm_reset_password_request_model.dart';
+import 'package:medcoco/feature/auth/domain/auth_repo.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/confirm_reset/confirm_reset_states.dart';
 
 @injectable
 class ConfirmResetCubit extends Cubit<ConfirmResetStates> {

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valo/feature/home/presentation/cubit/page_cubit.dart';
-import 'package:valo/feature/home/presentation/desktop/desktop_app_bar.dart';
+import 'package:medcoco/feature/home/presentation/cubit/page_cubit.dart';
+import 'package:medcoco/feature/home/presentation/desktop/desktop_app_bar.dart';
 import '../core/theme/app_color.dart';
 import '../feature/history/presentation/shared/history_page.dart';
 import '../feature/upload/shared/upload_page.dart';
 import '../feature/upload/presentation/widgets/custom_nav_bar.dart';
 
-class ValoView extends StatelessWidget {
-  const ValoView({super.key});
+class MedCocoView extends StatelessWidget {
+  const MedCocoView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,7 @@ class ValoView extends StatelessWidget {
               builder: (context, currentPage) {
                 return IndexedStack(
                   index: currentPage,
-                  children: const [
-                    UploadPage(),
-                    HistoryPage(),
-                  ],
+                  children: const [UploadPage(), HistoryPage()],
                 );
               },
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/app_style.dart';
+import 'package:medcoco/core/theme/app_style.dart';
 
 class UploadStatusBanner extends StatelessWidget {
   const UploadStatusBanner({

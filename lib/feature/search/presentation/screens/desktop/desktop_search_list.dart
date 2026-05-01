@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:valo/core/dummy/model/ray_model.dart';
+import 'package:medcoco/core/dummy/model/ray_model.dart';
 
 import 'desktop_search_item.dart';
 

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/core/constant/api_constant.dart';
-import 'package:valo/core/network/auth_token_refresher.dart';
-import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart';
+import 'package:medcoco/core/constant/api_constant.dart';
+import 'package:medcoco/core/network/auth_token_refresher.dart';
+import 'package:medcoco/feature/auth/data/service/local/auth_local_medical_service.dart';
 
 const _kAuthRetry = 'authRetry';
 const _kSkipAuth = 'skipAuth';

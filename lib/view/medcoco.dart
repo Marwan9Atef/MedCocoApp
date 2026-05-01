@@ -1,11 +1,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:valo/core/routes/app_router.dart';
+import 'package:medcoco/core/routes/app_router.dart';
 
 import '../core/theme/app_theme.dart';
 
-class Valo extends StatelessWidget {
-  const Valo({super.key});
+class MedCoco extends StatelessWidget {
+  const MedCoco({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,11 @@ class Valo extends StatelessWidget {
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
-      title: 'Valo',
+      title: 'MedCoco',
       routerConfig: AppRouter.routes,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-
-
     );
   }
 }

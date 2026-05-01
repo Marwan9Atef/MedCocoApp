@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/context_util.dart';
-import 'package:valo/core/widget/remove_container.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/utils/context_util.dart';
+import 'package:medcoco/core/widget/remove_container.dart';
 
 
 import 'desktop_clear.dart';

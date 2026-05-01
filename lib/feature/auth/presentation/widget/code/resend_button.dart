@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otp_resend_timer/otp_resend_timer.dart';
-import 'package:valo/core/utils/app_snack_bars.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_states.dart';
+import 'package:medcoco/core/utils/app_snack_bars.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_states.dart';
 
 import '../../../../../core/theme/app_style.dart';
 

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/core/constant/api_constant.dart';
-import 'package:valo/feature/auth/data/models/refresh_token_response_model.dart';
-import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/core/constant/api_constant.dart';
+import 'package:medcoco/feature/auth/data/models/refresh_token_response_model.dart';
+import 'package:medcoco/feature/auth/data/service/local/auth_local_medical_service.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 
 
 @lazySingleton

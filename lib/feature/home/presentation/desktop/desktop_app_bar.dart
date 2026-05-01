@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/feature/home/presentation/shared/logout_item.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/feature/home/presentation/shared/logout_item.dart';
 
 import '../../../../core/theme/app_style.dart';
 import '../../data/item_model.dart';

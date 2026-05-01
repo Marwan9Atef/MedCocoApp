@@ -1,6 +1,6 @@
 {
-    "name": "valo",
-    "short_name": "valo",
+    "name": "MedCoco",
+    "short_name": "MedCoco",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#000000",

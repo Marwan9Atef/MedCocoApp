@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/routes/route_center.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/app_snack_bars.dart';
-import 'package:valo/core/utils/validator.dart';
-import 'package:valo/core/widget/custom_button.dart';
-import 'package:valo/core/widget/custom_text_form_filed.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_states.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/routes/route_center.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/utils/app_snack_bars.dart';
+import 'package:medcoco/core/utils/validator.dart';
+import 'package:medcoco/core/widget/custom_button.dart';
+import 'package:medcoco/core/widget/custom_text_form_filed.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_states.dart';
 import '../../shared/auth_container.dart';
 
 class ForgetFormBody extends StatelessWidget {

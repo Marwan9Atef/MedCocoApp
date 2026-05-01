@@ -1,13 +1,13 @@
 import 'package:injectable/injectable.dart';
-import 'package:valo/core/constant/api_constant.dart';
-import 'package:valo/core/error/app_exception.dart';
-import 'package:valo/core/network/api_client.dart';
-import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_response_model.dart';
-import 'package:valo/feature/auth/data/models/register_request_model.dart';
-import 'package:valo/feature/auth/data/models/register_resposne_model.dart';
-import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart';
+import 'package:medcoco/core/constant/api_constant.dart';
+import 'package:medcoco/core/error/app_exception.dart';
+import 'package:medcoco/core/network/api_client.dart';
+import 'package:medcoco/feature/auth/data/models/confirm_reset_password_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_response_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_resposne_model.dart';
+import 'package:medcoco/feature/auth/data/service/remote/auth_remote_medical_service.dart';
 
 @LazySingleton(as: AuthRemoteMedicalService)
 class AuthApiMedicalService implements AuthRemoteMedicalService {

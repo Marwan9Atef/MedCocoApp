@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:valo/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_color.dart';
 
 bool _isDicomXFile(XFile file) {
   final name = file.name.toLowerCase();

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/context_util.dart';
-import 'package:valo/feature/search/presentation/screens/desktop/desktop_search_list.dart';
-import 'package:valo/feature/search/presentation/screens/mobile/mobile_search_list.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/utils/context_util.dart';
+import 'package:medcoco/feature/search/presentation/screens/desktop/desktop_search_list.dart';
+import 'package:medcoco/feature/search/presentation/screens/mobile/mobile_search_list.dart';
 import '../../../../core/dummy/model/ray_model.dart';
 import '../../../../core/theme/search_delgate_theme.dart';
 

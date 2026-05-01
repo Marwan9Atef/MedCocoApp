@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/routes/route_center.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/routes/route_center.dart';
 
 class HistoryMobileImage extends StatelessWidget {
   const HistoryMobileImage({

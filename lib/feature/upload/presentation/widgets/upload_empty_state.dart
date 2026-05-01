@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/utils/context_util.dart';
-import 'package:valo/feature/upload/presentation/widgets/upload_button.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/utils/context_util.dart';
+import 'package:medcoco/feature/upload/presentation/widgets/upload_button.dart';
 
 import '../../../../core/theme/app_style.dart';
 import 'custom_container.dart';

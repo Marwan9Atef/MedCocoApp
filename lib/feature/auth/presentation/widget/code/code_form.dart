@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/validator.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/utils/validator.dart';
 
 import '../../../../../core/theme/app_color.dart';
 

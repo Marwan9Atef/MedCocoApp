@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/utils/context_util.dart';
+import 'package:medcoco/core/utils/context_util.dart';
 
 class AuthContainer extends StatelessWidget {
   const AuthContainer({super.key,required this.child, this.width = 0.65});

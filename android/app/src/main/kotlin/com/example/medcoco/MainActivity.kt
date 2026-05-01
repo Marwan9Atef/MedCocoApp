@@ -1,4 +1,4 @@
-package com.example.valo
+package com.example.medcoco
 
 import io.flutter.embedding.android.FlutterActivity
 

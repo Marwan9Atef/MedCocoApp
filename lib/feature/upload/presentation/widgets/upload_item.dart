@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:valo/feature/upload/presentation/cubit/upload_images_cubit.dart';
-import 'package:valo/feature/upload/presentation/cubit/upload_process_cubit.dart';
+import 'package:medcoco/feature/upload/presentation/cubit/upload_images_cubit.dart';
+import 'package:medcoco/feature/upload/presentation/cubit/upload_process_cubit.dart';
 
 import 'upload_empty_state.dart';
 import 'upload_has_images_state.dart';

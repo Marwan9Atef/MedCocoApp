@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:valo/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_color.dart';
 
 import '../../data/models/nav_model.dart';
 

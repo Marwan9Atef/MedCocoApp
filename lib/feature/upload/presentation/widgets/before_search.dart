@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:valo/feature/upload/presentation/widgets/before_search_item.dart';
-import 'package:valo/feature/search/presentation/widgets/upload_search.dart';
+import 'package:medcoco/feature/upload/presentation/widgets/before_search_item.dart';
+import 'package:medcoco/feature/search/presentation/widgets/upload_search.dart';
 
 class BeforeSearch extends StatelessWidget {
   const BeforeSearch({

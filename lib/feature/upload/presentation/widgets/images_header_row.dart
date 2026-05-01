@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/feature/upload/presentation/cubit/upload_images_cubit.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/feature/upload/presentation/cubit/upload_images_cubit.dart';
 
 import '../../../../core/theme/app_style.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/feature/upload/presentation/cubit/upload_process_states.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/feature/upload/presentation/cubit/upload_process_states.dart';
 
 import 'upload_images_button.dart';
 import 'upload_progress_indicator.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/feature/history/presentation/widgets/history_mobile_image.dart';
+import 'package:medcoco/feature/history/presentation/widgets/history_mobile_image.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
 import '../../../../../core/theme/app_color.dart';
 import '../../../../../core/theme/app_style.dart';

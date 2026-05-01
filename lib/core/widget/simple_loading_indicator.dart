@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_color.dart';
 
 class SimpleLoadingIndicator extends StatelessWidget {
   const SimpleLoadingIndicator({super.key});
