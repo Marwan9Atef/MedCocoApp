@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/feature/home/presentation/cubit/page_cubit.dart';
 import 'package:medcoco/feature/home/presentation/desktop/desktop_app_bar.dart';
+import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
+import 'package:medcoco/feature/my_upload/presentation/shared/my_upload_page.dart';
 import '../core/theme/app_color.dart';
 import '../feature/history/presentation/shared/history_page.dart';
 import '../feature/upload/shared/upload_page.dart';
@@ -14,29 +17,42 @@ class MedCocoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PageCubit(),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth > 800;
+      child: BlocProvider(
+        create: (context) => serviceLocator<MyUploadCubit>(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isDesktop = constraints.maxWidth > 800;
 
-          return Scaffold(
-            appBar: isDesktop
-                ? const PreferredSize(
-                    preferredSize: Size.fromHeight(kToolbarHeight),
-                    child: DesktopAppBar(),
-                  )
-                : null,
-            backgroundColor: AppColor.anotherBlack,
-            bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
-            body: BlocBuilder<PageCubit, int>(
-              builder: (context, currentPage) {
-                return IndexedStack(
-                  index: currentPage,
-                  children: const [UploadPage(), HistoryPage()],
-                );
-              },
-            ),
-          );
-        },
+            return Scaffold(
+              appBar: isDesktop
+                  ? const PreferredSize(
+                      preferredSize: Size.fromHeight(kToolbarHeight),
+                      child: DesktopAppBar(),
+                    )
+                  : null,
+              backgroundColor: AppColor.anotherBlack,
+              bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
+              body: BlocBuilder<PageCubit, int>(
+                builder: (context, currentPage) {
+                  return IndexedStack(
+                    index: currentPage,
+                    children: [
+                      BlocProvider.value(
+                        value: context.read<MyUploadCubit>(),
+                        child: UploadPage(),
+                      ),
+                      BlocProvider.value(
+                        value: context.read<MyUploadCubit>(),
+                        child: MyUploadPage(),
+                      ),
+                      HistoryPage(),
+                    ],
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -10,7 +10,7 @@ import 'nav_bar_item.dart';
 class CustomNavBar extends StatelessWidget {
   const CustomNavBar({super.key});
 
-  static const _logoutIndex = 2;
+  static const _logoutIndex = 3;
 
   @override
   Widget build(BuildContext context) {

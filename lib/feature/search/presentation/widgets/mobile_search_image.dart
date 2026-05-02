@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medcoco/core/routes/route_center.dart';
-import 'package:medcoco/feature/search/presentation/widgets/confidence_item.dart';
+import 'package:medcoco/core/widget/confidence_item.dart';
 
 class MobileSearchImage extends StatelessWidget {
   const MobileSearchImage({super.key, required this.imagePath, required this.confidence});
@@ -32,7 +32,7 @@ class MobileSearchImage extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(top: 10, right: 10, child: ConfidenceItem(confidence: confidence)),
+        Positioned(top: 10, left: 10, child: ConfidenceItem(confidence: confidence)),
       ],
     );
   }

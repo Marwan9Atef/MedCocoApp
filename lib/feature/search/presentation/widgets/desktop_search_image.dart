@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:medcoco/feature/search/presentation/widgets/confidence_item.dart';
+import 'package:medcoco/core/widget/confidence_item.dart';
 
 class DesktopSearchImage extends StatelessWidget {
   const DesktopSearchImage({
@@ -34,7 +34,7 @@ class DesktopSearchImage extends StatelessWidget {
         Positioned(
           top: 5,
           left: 5,
-          child: ConfidenceItem(confidence: confidence),
+          child: ConfidenceItem(confidence: confidence,isDesktop: true,),
         ),
       ],
     );

@@ -23,7 +23,7 @@ class DesktopAppBar extends StatelessWidget {
           ),
           actions: [
             
-            ...List.generate(2, (index) =>
+            ...List.generate(3, (index) =>
               InkWell(
                 
                 onTap: () {

@@ -9,4 +9,12 @@ class ApiConstant {
   static String get uploadImageEndpoint => dotenv.env['uploadImageEndpoint'] ?? '';
   static String get refreshTokenEndpoint => dotenv.env['refreshTokenEndpoint'] ?? '';
   static String get searchEndpoint => dotenv.env['searchEndpoint'] ?? '';
+  static String get getMyImagesEndpoint =>
+      dotenv.env['getMyImagesEndpoint'] ??
+      dotenv.env['getMyImageEndpoint'] ??
+      '';
+  static String get removeMyUploadImageEndpoint =>
+      dotenv.env['removeMyUploadImageEndpoint'] ??
+      dotenv.env['removeMyUploadImagesEndpoint'] ??
+      '';
 }

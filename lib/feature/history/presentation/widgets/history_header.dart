@@ -4,7 +4,7 @@ import 'package:medcoco/core/utils/context_util.dart';
 import 'package:medcoco/core/widget/remove_container.dart';
 
 
-import 'desktop_clear.dart';
+import '../../../../core/widget/desktop_clear.dart';
 
 class HistoryHeader extends StatelessWidget {
   const HistoryHeader({super.key});
@@ -22,7 +22,10 @@ class HistoryHeader extends StatelessWidget {
 
           },
 
-        ):const DesktopClear(),
+        ): DesktopClear(
+
+          onTap: (){},
+        ),
 
       ],
     );

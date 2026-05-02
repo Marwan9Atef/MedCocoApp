@@ -1,22 +1,21 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:medcoco/core/generated/assets.dart';
 import 'package:medcoco/core/routes/route_center.dart';
-import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
-import 'package:medcoco/core/widget/confidence_item.dart';
-import 'package:medcoco/feature/history/presentation/widgets/history_desktop_image.dart';
-import '../../../../../core/dummy/model/ray_model.dart';
-import '../../../../../core/generated/assets.dart';
-import '../../../../../core/widget/remove_container.dart';
+import 'package:medcoco/core/widget/remove_container.dart';
+import 'package:medcoco/core/widget/simple_loading_indicator.dart';
+import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.dart';
 
-class DesktopHistoryItem extends StatelessWidget {
-  const DesktopHistoryItem({super.key, required this.rayModel});
-  final RayModel rayModel;
+class MyUploadDesktopItem extends StatelessWidget {
+  const MyUploadDesktopItem({super.key,required this.image});
+  final MyImageModel image;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return  Container(
       margin: const EdgeInsets.only(top: 16),
       padding: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
@@ -26,28 +25,39 @@ class DesktopHistoryItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          HistoryDesktopImage(imagePath: rayModel.imagePath),
+          ClipRRect(
+            borderRadius: BorderRadiusGeometry.only(
+              topLeft: Radius.circular(14),
+              bottomLeft: Radius.circular(14),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: CachedNetworkImage(
+              placeholder: (context, url) => const Center(
+                child:  SimpleLoadingIndicator(),
+              ),
+              errorWidget: (context, url, error) => const Center(
+                child: Icon(Icons.error),
+              ),
+              imageUrl: image.fileUrl,
+              fit: BoxFit.fill,
+              width: 200,
+              height: 200,
+            ),
+          ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(rayModel.title, style: AppStyles.styleRegular20(context)),
+                Text(image.filename, style: AppStyles.styleRegular20(context)),
                 const SizedBox(height: 10),
-                Text(
-                  rayModel.description,
-                  style: AppStyles.styleRegular16(
-                    context,
-                  ).copyWith(color: AppColor.gray),
-                ),
-                const SizedBox(height: 15),
                 Row(
                   children: [
                     InkWell(
                       onTap: () {
                         context.push(
                           RouteCenter.fullScreenImage,
-                          extra: rayModel.imagePath,
+                          extra: image.fileUrl,
                         );
                       },
                       mouseCursor: SystemMouseCursors.click,
@@ -60,8 +70,6 @@ class DesktopHistoryItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     RemoveContainer(onTap: () {}),
-                    const SizedBox(width: 12),
-                    ConfidenceItem(confidence: 101, isDesktop: true),
                   ],
                 ),
               ],
