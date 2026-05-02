@@ -99,17 +99,7 @@ class AppRouter {
           );
         },
       ),
-      GoRoute(
-        path: RouteCenter.search,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const SizedBox(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) =>
-                    FadeTransition(opacity: animation, child: child),
-          );
-        },
-      ),
+     
       GoRoute(
         path: RouteCenter.reset,
         redirect: (context, state) {

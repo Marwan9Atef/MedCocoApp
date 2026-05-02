@@ -13,8 +13,10 @@ class FullScreenImageViewer extends StatelessWidget {
     return Scaffold(
       appBar: kIsWeb ? null : AppBar(),
       body: PhotoView(
-        onTapUp:!kIsWeb? null : (context, details, controllerValue) => context.pop(),
-        imageProvider: Image.asset(imageUrl).image,
+        onTapUp: !kIsWeb
+            ? null
+            : (context, details, controllerValue) => context.pop(),
+        imageProvider: NetworkImage(imageUrl),
         minScale: PhotoViewComputedScale.contained * 0.8,
         maxScale: PhotoViewComputedScale.covered * 2.0,
         enableRotation: true,
