@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
 import 'package:medcoco/feature/upload/presentation/cubit/upload_process_cubit.dart';
 import 'package:medcoco/feature/upload/presentation/cubit/upload_process_states.dart';
 
@@ -38,7 +39,14 @@ class UploadHasImagesState extends StatelessWidget {
                 const SizedBox(height: 20),
               UploadSection(
                 state: uploadState,
-                onUpload: () => context.read<UploadProcessCubit>().upload(images),
+                onUpload: () async {
+                  await context.read<UploadProcessCubit>().upload(images);
+                  if (context.mounted) {
+                    context.read<MyUploadCubit>().getMyImages();
+
+                  }
+                      
+                },
               ),
             ],
           );

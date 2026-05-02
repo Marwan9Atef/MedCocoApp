@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:medcoco/core/widget/simple_loading_indicator.dart';
-import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_states.dart';
 import 'package:medcoco/feature/my_upload/presentation/screens/desktop/my_upload_desktop_list.dart';
@@ -41,9 +40,9 @@ class _MyUploadPageState extends State<MyUploadPage> {
               builder: (context, state) {
                 if (state is MyUploadLoading) {
                   return const Center(child: SimpleLoadingIndicator());
+                } else if (state is MyUploadFailure) {
+                  return Center(child: Text(state.error));
                 } else if (state is MyUploadSuccess) {
-                  List<MyImageModel> images = state.result.images;
-                  final int numberOfImages = images.length;
                   return RefreshIndicator(
                     onRefresh: () {
                       return context.read<MyUploadCubit>().getMyImages();
@@ -51,18 +50,39 @@ class _MyUploadPageState extends State<MyUploadPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        MyUploadHeader(numberOfImages: numberOfImages),
+                        BlocSelector<MyUploadCubit, MyUploadStates, int>(
+                          selector: (state) {
+                            if (state is MyUploadSuccess) {
+                              return state.result.images.length;
+                            }
+                            return 0;
+                          },
+                          builder: (context, numberOfImages) {
+                            return MyUploadHeader(
+                              numberOfImages: numberOfImages,
+                            );
+                          },
+                        ),
                         if (!isDesktop) const SizedBox(height: 16),
                         Expanded(
-                          child: isDesktop
-                              ? MyUploadDesktopList(images: images)
-                              : MyUploadMobileList(images: images),
+                          child: BlocBuilder<MyUploadCubit, MyUploadStates>(
+                            builder: (context, state) {
+                              if (state is MyUploadSuccess) {
+                                return isDesktop
+                                    ? MyUploadDesktopList(
+                                        images: state.result.images,
+                                      )
+                                    : MyUploadMobileList(
+                                        images: state.result.images,
+                                      );
+                              }
+                              return const SizedBox();
+                            },
+                          ),
                         ),
                       ],
                     ),
                   );
-                } else if (state is MyUploadFailure) {
-                  return Center(child: Text(state.error));
                 } else {
                   return const SizedBox();
                 }

@@ -36,8 +36,11 @@ class MyUploadHeader extends StatelessWidget {
         ),
           Spacer(),
           context.screenWidth<800?RemoveContainer(
-          onTap: (){
-
+          onTap: () async {
+            await context.read<MyUploadCubit>().removeMyUploadImage();
+            if(context.mounted) {
+              context.read<MyUploadCubit>().getMyImages();
+            }
 
 
           },
@@ -50,7 +53,11 @@ class MyUploadHeader extends StatelessWidget {
         }),
         const SizedBox(width: 16),
          DesktopClear(
-          onTap: (){
+          onTap: () async {
+           await context.read<MyUploadCubit>().removeMyUploadImage();
+           if(context.mounted) {
+             context.read<MyUploadCubit>().getMyImages();
+           }
          
           },
         ),

@@ -4,4 +4,5 @@ import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.d
 
 abstract class MyUploadRepo {
   Future<Either<Failure, MyImagesResponseModel>> getMyImages();
+  Future<Either<Failure, String>> removeMyUploadImage();
 }

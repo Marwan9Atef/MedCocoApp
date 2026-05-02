@@ -21,4 +21,14 @@ class MyUploadRepoImpl implements MyUploadRepo {
       return Left(Failure(exception.message));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> removeMyUploadImage() async {
+    try {
+      final message = await _remoteService.removeMyUploadImage();
+      return Right(message);
+    } on AppException catch (exception) {
+      return Left(Failure(exception.message));
+    }
+  }
 }

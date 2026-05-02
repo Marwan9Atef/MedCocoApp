@@ -17,4 +17,13 @@ class MyUploadCubit extends Cubit<MyUploadStates> {
       (result) => emit(MyUploadSuccess(result: result)),
     );
   }
+
+  Future<void> removeMyUploadImage() async {
+    emit(MyUploadLoading());
+    final result = await _myUploadRepo.removeMyUploadImage();
+    result.fold(
+      (failure) => emit(MyUploadFailure(error: failure.message)),
+      (message) => emit(MyUploadRemoveSuccess(message: message)),
+    );
+  }
 }

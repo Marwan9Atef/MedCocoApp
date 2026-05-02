@@ -13,4 +13,8 @@ class ApiConstant {
       dotenv.env['getMyImagesEndpoint'] ??
       dotenv.env['getMyImageEndpoint'] ??
       '';
+  static String get removeMyUploadImageEndpoint =>
+      dotenv.env['removeMyUploadImageEndpoint'] ??
+      dotenv.env['removeMyUploadImagesEndpoint'] ??
+      '';
 }

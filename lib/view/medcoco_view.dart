@@ -17,36 +17,42 @@ class MedCocoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PageCubit(),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth > 800;
+      child: BlocProvider(
+        create: (context) => serviceLocator<MyUploadCubit>(),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isDesktop = constraints.maxWidth > 800;
 
-          return Scaffold(
-            appBar: isDesktop
-                ? const PreferredSize(
-                    preferredSize: Size.fromHeight(kToolbarHeight),
-                    child: DesktopAppBar(),
-                  )
-                : null,
-            backgroundColor: AppColor.anotherBlack,
-            bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
-            body: BlocBuilder<PageCubit, int>(
-              builder: (context, currentPage) {
-                return IndexedStack(
-                  index: currentPage,
-                  children:  [
-                    UploadPage(),
-                    BlocProvider(
-                      create: (context) => serviceLocator<MyUploadCubit>(),
-                      child: MyUploadPage(),
-                    ),
-                    HistoryPage(),
-                  ],
-                );
-              },
-            ),
-          );
-        },
+            return Scaffold(
+              appBar: isDesktop
+                  ? const PreferredSize(
+                      preferredSize: Size.fromHeight(kToolbarHeight),
+                      child: DesktopAppBar(),
+                    )
+                  : null,
+              backgroundColor: AppColor.anotherBlack,
+              bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
+              body: BlocBuilder<PageCubit, int>(
+                builder: (context, currentPage) {
+                  return IndexedStack(
+                    index: currentPage,
+                    children: [
+                      BlocProvider.value(
+                        value: context.read<MyUploadCubit>(),
+                        child: UploadPage(),
+                      ),
+                      BlocProvider.value(
+                        value: context.read<MyUploadCubit>(),
+                        child: MyUploadPage(),
+                      ),
+                      HistoryPage(),
+                    ],
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

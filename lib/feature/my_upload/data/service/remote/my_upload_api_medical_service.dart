@@ -23,4 +23,19 @@ class MyUploadApiMedicalService implements MyUploadRemoteMedicalService {
       );
     }
   }
+
+  @override
+  Future<String> removeMyUploadImage() async {
+    try {
+      final response = await apiClient.delete(
+        ApiConstant.removeMyUploadImageEndpoint,
+      );
+      return response.data['message'] as String;
+    } catch (exception) {
+      final message = extractDioErrorMessage(exception);
+      throw RemoteException(
+        message ?? 'An error occurred while removing your images',
+      );
+    }
+  }
 }

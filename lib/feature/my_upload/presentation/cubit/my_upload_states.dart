@@ -12,6 +12,12 @@ class MyUploadSuccess extends MyUploadStates {
   MyUploadSuccess({required this.result});
 }
 
+class MyUploadRemoveSuccess extends MyUploadStates {
+  final String message;
+
+  MyUploadRemoveSuccess({required this.message});
+}
+
 class MyUploadFailure extends MyUploadStates {
   final String error;
 
