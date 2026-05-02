@@ -35,15 +35,24 @@ import 'package:medcoco/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i587;
 import 'package:medcoco/feature/auth/presentation/cubit/register/register_cubit.dart'
     as _i925;
+import 'package:medcoco/feature/my_upload/data/repo/my_upload_repo_impl.dart'
+    as _i634;
+import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_api_medical_service.dart'
+    as _i263;
+import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_remote_medical_service.dart'
+    as _i1002;
+import 'package:medcoco/feature/my_upload/domain/my_upload_repo.dart' as _i204;
+import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart'
+    as _i766;
 import 'package:medcoco/feature/search/data/repo/search_repo_impl.dart'
-    as _i901;
+    as _i338;
 import 'package:medcoco/feature/search/data/service/remote/search_api_medical_service.dart'
-    as _i902;
+    as _i838;
 import 'package:medcoco/feature/search/data/service/remote/search_remote_medical_service.dart'
-    as _i903;
-import 'package:medcoco/feature/search/domain/repo/search_repo.dart' as _i904;
+    as _i117;
+import 'package:medcoco/feature/search/domain/repo/search_repo.dart' as _i472;
 import 'package:medcoco/feature/search/presentation/cubit/search_cubit.dart'
-    as _i905;
+    as _i868;
 import 'package:medcoco/feature/upload/data/repo/upload_repo_impl.dart'
     as _i830;
 import 'package:medcoco/feature/upload/data/service/remote/upload_remote_medical_service.dart'
@@ -87,6 +96,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i717.AuthTokenRefresher>(),
       ),
     );
+    gh.lazySingleton<_i117.SearchRemoteMedicalService>(
+      () => _i838.SearchApiMedicalService(apiClient: gh<_i966.ApiClient>()),
+    );
     gh.lazySingleton<_i129.UploadRemoteMedicalService>(
       () => registerModule.uploadRemoteService(
         gh<_i707.AuthLocalMedicalService>(),
@@ -94,17 +106,26 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i717.AuthTokenRefresher>(),
       ),
     );
+    gh.lazySingleton<_i1002.MyUploadRemoteMedicalService>(
+      () => _i263.MyUploadApiMedicalService(apiClient: gh<_i966.ApiClient>()),
+    );
+    gh.lazySingleton<_i204.MyUploadRepo>(
+      () => _i634.MyUploadRepoImpl(gh<_i1002.MyUploadRemoteMedicalService>()),
+    );
+    gh.lazySingleton<_i472.SearchRepo>(
+      () => _i338.SearchRepoImpl(gh<_i117.SearchRemoteMedicalService>()),
+    );
     gh.lazySingleton<_i517.UploadRepo>(
       () => _i830.UploadRepoImpl(gh<_i129.UploadRemoteMedicalService>()),
     );
-    gh.lazySingleton<_i903.SearchRemoteMedicalService>(
-      () => _i902.SearchApiMedicalService(apiClient: gh<_i966.ApiClient>()),
-    );
-    gh.lazySingleton<_i904.SearchRepo>(
-      () => _i901.SearchRepoImpl(gh<_i903.SearchRemoteMedicalService>()),
-    );
     gh.lazySingleton<_i408.AuthRemoteMedicalService>(
       () => _i369.AuthApiMedicalService(apiClient: gh<_i966.ApiClient>()),
+    );
+    gh.factory<_i868.SearchCubit>(
+      () => _i868.SearchCubit(gh<_i472.SearchRepo>()),
+    );
+    gh.factory<_i766.MyUploadCubit>(
+      () => _i766.MyUploadCubit(gh<_i204.MyUploadRepo>()),
     );
     gh.lazySingleton<_i23.AuthRepo>(
       () => _i855.AuthRepoImpl(
@@ -119,9 +140,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i587.LoginCubit>(() => _i587.LoginCubit(gh<_i23.AuthRepo>()));
     gh.factory<_i925.RegisterCubit>(
       () => _i925.RegisterCubit(gh<_i23.AuthRepo>()),
-    );
-    gh.factory<_i905.SearchCubit>(
-      () => _i905.SearchCubit(gh<_i904.SearchRepo>()),
     );
     gh.factory<_i524.UploadProcessCubit>(
       () => _i524.UploadProcessCubit(gh<_i517.UploadRepo>()),

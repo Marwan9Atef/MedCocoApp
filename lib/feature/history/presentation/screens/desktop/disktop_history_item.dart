@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:medcoco/core/routes/route_center.dart';
 import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/widget/confidence_item.dart';
+import 'package:medcoco/feature/history/presentation/widgets/history_desktop_image.dart';
 import '../../../../../core/dummy/model/ray_model.dart';
 import '../../../../../core/generated/assets.dart';
 import '../../../../../core/widget/remove_container.dart';
@@ -24,19 +26,7 @@ class DesktopHistoryItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadiusGeometry.only(
-              topLeft: Radius.circular(14),
-              bottomLeft: Radius.circular(14),
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              rayModel.imagePath,
-              fit: BoxFit.fill,
-              width: 200,
-              height: 200,
-            ),
-          ),
+          HistoryDesktopImage(imagePath: rayModel.imagePath),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
@@ -70,6 +60,8 @@ class DesktopHistoryItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     RemoveContainer(onTap: () {}),
+                    const SizedBox(width: 12),
+                    ConfidenceItem(confidence: 101, isDesktop: true),
                   ],
                 ),
               ],

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medcoco/core/generated/assets.dart';
 import 'package:medcoco/core/routes/route_center.dart';
+import 'package:medcoco/core/widget/confidence_item.dart';
 
 class HistoryMobileImage extends StatelessWidget {
   const HistoryMobileImage({
@@ -48,6 +49,10 @@ class HistoryMobileImage extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+                  top: 8,
+            left: 8,
+            child: ConfidenceItem(confidence: 101))
         ],
       ),
     );

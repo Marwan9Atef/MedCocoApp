@@ -3,6 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medcoco/core/generated/assets.dart';
 import 'package:medcoco/core/routes/route_center.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:medcoco/core/widget/simple_loading_indicator.dart';
 
 class MyUploadMobileImage extends StatelessWidget {
   const MyUploadMobileImage({super.key, required this.imagePath});
@@ -22,8 +24,10 @@ class MyUploadMobileImage extends StatelessWidget {
               context.push(RouteCenter.fullScreenImage, extra: imagePath);
             },
             mouseCursor: SystemMouseCursors.click,
-            child: Image.asset(
-              imagePath,
+            child:CachedNetworkImage(
+              placeholder: (context, url) => const Center(child: SimpleLoadingIndicator()),
+              errorWidget: (context, url, error) => const Center(child: Icon(Icons.error)),
+              imageUrl: imagePath,
               fit: BoxFit.cover,
               width: double.infinity,
             ),

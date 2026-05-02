@@ -3,9 +3,10 @@ import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
 
 class ConfidenceItem extends StatelessWidget {
-  const ConfidenceItem({super.key, required this.confidence});
+  const ConfidenceItem({super.key, required this.confidence, this.isDesktop = false});
 
   final double confidence;
+  final bool isDesktop;
 
   static Color getConfidenceColor(double confidence) {
     confidence = confidence + .6;
@@ -21,11 +22,11 @@ class ConfidenceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: isDesktop ? const EdgeInsets.symmetric(horizontal: 8, vertical: 4) : const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: ShapeDecoration(
         color: getConfidenceColor(confidence),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(26843500),
+          borderRadius: BorderRadius.circular(isDesktop ? 8 : 26843500),
         ),
         shadows: [
           BoxShadow(

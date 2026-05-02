@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:medcoco/core/dummy/model/ray_model.dart';
+
+import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.dart';
 import 'package:medcoco/feature/my_upload/presentation/screens/mobile/my_upload_mobile_item.dart';
 
 class MyUploadMobileList extends StatelessWidget {
-  const MyUploadMobileList({super.key});
-
+  const MyUploadMobileList({super.key, required this.images});
+  final List<MyImageModel> images;
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: RayModel.rayList.length,
+      itemCount: images.length,
       itemBuilder: (context, index) {
-        return MyUploadMobileItem(rayModel: RayModel.rayList[index])
+        return MyUploadMobileItem(image: images[index])
             .animate(delay: (index * 40).ms)
             .fadeIn(
               duration: 220.ms,
