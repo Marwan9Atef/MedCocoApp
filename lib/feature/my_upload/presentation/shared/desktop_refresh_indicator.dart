@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
 
-import 'clear_icon.dart';
 
 
-class DesktopClear extends StatelessWidget {
-  const DesktopClear({super.key});
+class DesktopRefreshIndicator extends StatelessWidget {
+  const DesktopRefreshIndicator({super.key, required this.onTap});
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: ShapeDecoration(
-        color: const Color(0x7F18181B),
+        color: AppColor.primaryColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 0.80,
@@ -24,16 +24,17 @@ class DesktopClear extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: (){},
+          onTap: onTap,
           mouseCursor: SystemMouseCursors.click,
           borderRadius: BorderRadius.circular(8),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Row(
               children: [
-                const ClearIcon(),
-                const SizedBox(width: 16),
-                FittedBox(fit: BoxFit.scaleDown, child: Text("Clear", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.red))),
+             
+               const Icon(Icons.refresh, color: AppColor.white),
+                const SizedBox(width: 10),
+                FittedBox(fit: BoxFit.scaleDown, child: Text("Refresh", style: AppStyles.styleRegular14(context).copyWith(color: AppColor.white))),
               ],
             ),
           ),
@@ -42,4 +43,3 @@ class DesktopClear extends StatelessWidget {
     );
   }
 }
-

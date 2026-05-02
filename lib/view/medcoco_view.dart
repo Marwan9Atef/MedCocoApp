@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/feature/home/presentation/cubit/page_cubit.dart';
 import 'package:medcoco/feature/home/presentation/desktop/desktop_app_bar.dart';
+import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
 import 'package:medcoco/feature/my_upload/presentation/shared/my_upload_page.dart';
 import '../core/theme/app_color.dart';
 import '../feature/history/presentation/shared/history_page.dart';
@@ -32,9 +34,12 @@ class MedCocoView extends StatelessWidget {
               builder: (context, currentPage) {
                 return IndexedStack(
                   index: currentPage,
-                  children: const [
+                  children:  [
                     UploadPage(),
-                    MyUploadPage(),
+                    BlocProvider(
+                      create: (context) => serviceLocator<MyUploadCubit>(),
+                      child: MyUploadPage(),
+                    ),
                     HistoryPage(),
                   ],
                 );
