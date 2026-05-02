@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:medcoco/core/dummy/model/ray_model.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/feature/my_upload/presentation/screens/mobile/my_upload_mobile_image.dart';
+
+class MyUploadMobileItem extends StatelessWidget {
+  const MyUploadMobileItem({super.key,required this.rayModel});
+  final RayModel rayModel;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+      decoration:BoxDecoration(
+        color:const Color(0xff18181B),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+       MyUploadMobileImage(imagePath: rayModel.imagePath,),
+          const SizedBox(height: 10),
+
+    Text(rayModel.title,style: AppStyles.styleRegular20(context),),
+          const SizedBox(height: 6),
+          Text(rayModel.description,style: AppStyles.styleRegular16(context).copyWith(color: AppColor.gray),),
+
+
+
+
+
+        ],
+
+      ),
+    );
+  }
+}

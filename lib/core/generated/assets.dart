@@ -17,5 +17,6 @@ class AppAssets {
   static String imagesDownloadSvg='assets/images/download.svg';
   static String detailsContainer='assets/images/detialsContainer.svg';
   static String imagesLogoutIcon='assets/images/logoutIcon.svg';
+   static String imagesMyUploadIcon='assets/images/myUpload.svg';
 
 }
