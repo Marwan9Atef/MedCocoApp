@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/core/error/app_exception.dart';
-import 'package:valo/core/failure/failure.dart';
-import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_response_model.dart';
-import 'package:valo/feature/auth/data/models/register_request_model.dart';
-import 'package:valo/feature/auth/data/models/register_resposne_model.dart';
-import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart';
-import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart';
-import 'package:valo/feature/auth/domain/auth_repo.dart';
+import 'package:medcoco/core/error/app_exception.dart';
+import 'package:medcoco/core/failure/failure.dart';
+import 'package:medcoco/feature/auth/data/models/confirm_reset_password_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_response_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_resposne_model.dart';
+import 'package:medcoco/feature/auth/data/service/local/auth_local_medical_service.dart';
+import 'package:medcoco/feature/auth/data/service/remote/auth_remote_medical_service.dart';
+import 'package:medcoco/feature/auth/domain/auth_repo.dart';
 
 @LazySingleton(as: AuthRepo)
 class AuthRepoImpl implements AuthRepo {

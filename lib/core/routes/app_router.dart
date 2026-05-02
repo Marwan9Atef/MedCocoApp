@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:valo/core/di/service_locator.dart';
-import 'package:valo/core/routes/route_center.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_notifier.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_status.dart';
-import 'package:valo/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/login/login_cubit.dart';
-import 'package:valo/feature/auth/presentation/cubit/register/register_cubit.dart';
-import 'package:valo/feature/auth/presentation/screens/forget_screen.dart';
-import 'package:valo/feature/auth/presentation/screens/login_screen.dart';
-import 'package:valo/view/valo_view.dart';
+import 'package:medcoco/core/di/service_locator.dart';
+import 'package:medcoco/core/routes/route_center.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_notifier.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_status.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/confirm_reset/confirm_reset_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/login/login_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/register/register_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/screens/forget_screen.dart';
+import 'package:medcoco/feature/auth/presentation/screens/login_screen.dart';
+import 'package:medcoco/view/medcoco_view.dart';
 import '../../feature/auth/presentation/screens/register_screen.dart';
 import '../../feature/auth/presentation/screens/reset_screen.dart';
 import '../widget/full_screen_image.dart';
@@ -38,7 +38,8 @@ class AppRouter {
       }
 
       if (status == AuthStatus.authenticated &&
-          state.matchedLocation == RouteCenter.login) {
+          (state.matchedLocation == RouteCenter.login ||
+              state.matchedLocation == RouteCenter.register)) {
         return RouteCenter.view;
       }
 
@@ -91,24 +92,14 @@ class AppRouter {
         path: RouteCenter.view,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
-            child: const ValoView(),
+            child: const MedCocoView(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) =>
                     FadeTransition(opacity: animation, child: child),
           );
         },
       ),
-      GoRoute(
-        path: RouteCenter.search,
-        pageBuilder: (context, state) {
-          return CustomTransitionPage(
-            child: const SizedBox(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) =>
-                    FadeTransition(opacity: animation, child: child),
-          );
-        },
-      ),
+     
       GoRoute(
         path: RouteCenter.reset,
         redirect: (context, state) {
@@ -127,7 +118,8 @@ class AppRouter {
                   create: (context) => serviceLocator<ConfirmResetCubit>(),
                 ),
                 BlocProvider(
-                    create: (context) => serviceLocator<ForgetCubit>()),
+                  create: (context) => serviceLocator<ForgetCubit>(),
+                ),
               ],
               child: ResetScreen(email: email),
             ),
@@ -139,7 +131,7 @@ class AppRouter {
       ),
       GoRoute(
         path: RouteCenter.fullScreenImage,
-   
+
         pageBuilder: (context, state) {
           final String imagePath = state.extra as String;
           return CustomTransitionPage(

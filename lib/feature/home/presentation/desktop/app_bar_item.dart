@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/theme/app_style.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_style.dart';
 
 import '../../data/item_model.dart';
 

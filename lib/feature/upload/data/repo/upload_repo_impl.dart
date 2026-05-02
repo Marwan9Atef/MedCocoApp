@@ -13,7 +13,7 @@ class UploadRepoImpl implements UploadRepo {
   UploadRepoImpl(this._remoteService);
 
   @override
-  Future<Either<Failure, List<UploadResponseModel>>> uploadImages(
+  Future<Either<Failure, UploadResponseModel>> uploadImages(
     List<String> filePaths,
   ) async {
     try {

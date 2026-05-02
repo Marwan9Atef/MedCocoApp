@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:valo/core/generated/assets.dart';
+import 'package:medcoco/core/generated/assets.dart';
 
 class ClearIcon extends StatelessWidget {
   const ClearIcon({

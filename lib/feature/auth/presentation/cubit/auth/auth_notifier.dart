@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 
 class AuthNotifier extends ChangeNotifier {
   late final StreamSubscription _sub;

@@ -31,7 +31,7 @@ class UploadProcessCubit extends Cubit<UploadProcessState> {
 
     result.fold(
       (failure) => emit(UploadProcessFailure(error: failure.message)),
-      (results) => emit(UploadProcessSuccess(results: results)),
+      (result) => emit(UploadProcessSuccess(result: result)),
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/resources/font/font_family_manger.dart';
+import 'package:medcoco/core/resources/font/font_family_manger.dart';
 import '../resources/font/font_weight_manger.dart';
 import 'app_color.dart';
 

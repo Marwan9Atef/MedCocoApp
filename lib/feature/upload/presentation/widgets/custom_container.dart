@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/utils/context_util.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/utils/context_util.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer({super.key,required this.child});

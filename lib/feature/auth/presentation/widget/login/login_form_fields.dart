@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/core/utils/validator.dart';
-import 'package:valo/core/widget/custom_text_form_filed.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/core/utils/validator.dart';
+import 'package:medcoco/core/widget/custom_text_form_filed.dart';
 
 class LoginFormFields extends StatelessWidget {
   const LoginFormFields({

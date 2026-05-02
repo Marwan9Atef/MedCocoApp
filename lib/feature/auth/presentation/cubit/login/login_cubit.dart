@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/feature/auth/data/models/login_request_model.dart';
-import 'package:valo/feature/auth/domain/auth_repo.dart';
-import 'package:valo/feature/auth/presentation/cubit/login/login_states.dart';
+import 'package:medcoco/feature/auth/data/models/login_request_model.dart';
+import 'package:medcoco/feature/auth/domain/auth_repo.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/login/login_states.dart';
 @injectable
 class LoginCubit extends Cubit<LoginStates> {
   final AuthRepo _authRepo;

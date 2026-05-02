@@ -1,13 +1,13 @@
 import 'package:injectable/injectable.dart';
-import 'package:valo/core/constant/api_constant.dart';
-import 'package:valo/core/error/app_exception.dart';
-import 'package:valo/core/network/api_client.dart';
-import 'package:valo/feature/auth/data/models/confirm_reset_password_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_request_model.dart';
-import 'package:valo/feature/auth/data/models/login_response_model.dart';
-import 'package:valo/feature/auth/data/models/register_request_model.dart';
-import 'package:valo/feature/auth/data/models/register_resposne_model.dart';
-import 'package:valo/feature/auth/data/service/remote/auth_remote_medical_service.dart';
+import 'package:medcoco/core/constant/api_constant.dart';
+import 'package:medcoco/core/error/app_exception.dart';
+import 'package:medcoco/core/network/api_client.dart';
+import 'package:medcoco/feature/auth/data/models/confirm_reset_password_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/login_response_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_request_model.dart';
+import 'package:medcoco/feature/auth/data/models/register_resposne_model.dart';
+import 'package:medcoco/feature/auth/data/service/remote/auth_remote_medical_service.dart';
 
 @LazySingleton(as: AuthRemoteMedicalService)
 class AuthApiMedicalService implements AuthRemoteMedicalService {
@@ -29,7 +29,9 @@ class AuthApiMedicalService implements AuthRemoteMedicalService {
   }
 
   @override
-  Future<RegisterResposneModel> register(RegisterRequestModel registerRequestModel) async {
+  Future<RegisterResposneModel> register(
+    RegisterRequestModel registerRequestModel,
+  ) async {
     try {
       final response = await apiClient.post(
         ApiConstant.registerEndpoint,
@@ -49,15 +51,19 @@ class AuthApiMedicalService implements AuthRemoteMedicalService {
         ApiConstant.passwordResetEndpoint,
         data: {'email': email},
       );
-      return response.data[0]as String;
+      return response.data['message'] as String;
     } catch (exception) {
       final message = extractDioErrorMessage(exception);
-      throw RemoteException(message ?? 'An error occurred during password reset request');
+      throw RemoteException(
+        message ?? 'An error occurred during password reset request',
+      );
     }
   }
 
   @override
-  Future<String> confirmResetPassword(ConfirmResetPasswordRequest request) async {
+  Future<String> confirmResetPassword(
+    ConfirmResetPasswordRequest request,
+  ) async {
     try {
       final response = await apiClient.post(
         ApiConstant.confirmResetPasswordEndpoint,
@@ -66,7 +72,9 @@ class AuthApiMedicalService implements AuthRemoteMedicalService {
       return response.data['message'] as String;
     } catch (exception) {
       final message = extractDioErrorMessage(exception);
-      throw RemoteException(message ?? 'An error occurred during password reset confirmation');
+      throw RemoteException(
+        message ?? 'An error occurred during password reset confirmation',
+      );
     }
   }
 }

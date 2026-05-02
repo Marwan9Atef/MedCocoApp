@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/feature/auth/data/service/local/auth_local_medical_service.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_status.dart';
+import 'package:medcoco/feature/auth/data/service/local/auth_local_medical_service.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_status.dart';
 
 @lazySingleton
 class AuthCubit extends Cubit<AuthStatus> {

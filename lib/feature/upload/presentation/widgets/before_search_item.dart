@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/theme/app_style.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_style.dart';
 
 class BeforeSearchItem extends StatelessWidget {
   const BeforeSearchItem({super.key});

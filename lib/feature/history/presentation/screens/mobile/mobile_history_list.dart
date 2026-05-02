@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../../core/dummy/model/ray_model.dart';
 import 'mobile_history_item.dart';
@@ -9,9 +10,22 @@ class MobileHistoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemBuilder: (context, index) =>MobileHistoryItem(rayModel: RayModel.rayList[index],),itemCount: RayModel.rayList.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 17,),
-
+      itemCount: RayModel.rayList.length,
+      itemBuilder: (context, index) {
+        return MobileHistoryItem(rayModel: RayModel.rayList[index])
+            .animate(delay: (index * 40).ms)
+            .fadeIn(
+              duration: 220.ms,
+              curve: Curves.easeOutCubic,
+            )
+            .slideY(
+              begin: 0.08,
+              end: 0,
+              duration: 220.ms,
+              curve: Curves.easeOutCubic,
+            );
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: 17),
     );
   }
 }

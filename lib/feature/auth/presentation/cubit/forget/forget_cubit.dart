@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:valo/feature/auth/domain/auth_repo.dart';
-import 'package:valo/feature/auth/presentation/cubit/forget/forget_states.dart';
+import 'package:medcoco/feature/auth/domain/auth_repo.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/forget/forget_states.dart';
 
 @injectable
 class ForgetCubit extends Cubit<ForgetStates> {

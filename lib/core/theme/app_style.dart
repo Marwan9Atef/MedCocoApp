@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valo/core/theme/size_config.dart';
+import 'package:medcoco/core/theme/size_config.dart';
 import '../resources/font/font_family_manger.dart';
 import 'app_color.dart';
 

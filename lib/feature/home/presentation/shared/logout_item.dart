@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:valo/core/di/service_locator.dart';
-import 'package:valo/core/generated/assets.dart';
-import 'package:valo/core/theme/app_color.dart';
-import 'package:valo/core/theme/app_style.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/core/di/service_locator.dart';
+import 'package:medcoco/core/generated/assets.dart';
+import 'package:medcoco/core/theme/app_color.dart';
+import 'package:medcoco/core/theme/app_style.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 
 class LogoutItem extends StatelessWidget {
   const LogoutItem({super.key,});

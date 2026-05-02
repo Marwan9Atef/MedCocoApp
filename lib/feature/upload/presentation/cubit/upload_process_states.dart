@@ -14,8 +14,8 @@ final class UploadProcessInProgress extends UploadProcessState {
 }
 
 final class UploadProcessSuccess extends UploadProcessState {
-  final List<UploadResponseModel> results;
-  const UploadProcessSuccess({required this.results});
+  final UploadResponseModel result;
+  const UploadProcessSuccess({required this.result});
 }
 
 final class UploadProcessFailure extends UploadProcessState {

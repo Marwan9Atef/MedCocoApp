@@ -1,14 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:valo/core/di/service_locator.dart';
-import 'package:valo/core/init/dotenv_init.dart';
-import 'package:valo/core/init/file_downloader_init_stub.dart'
-    if (dart.library.io) 'package:valo/core/init/file_downloader_init.dart';
-import 'package:valo/core/init/observer_init.dart';
-import 'package:valo/core/init/url_strategy_stub.dart'
-    if (dart.library.html) 'package:valo/core/init/url_strategy_web.dart';
-import 'package:valo/core/init/window_init.dart';
-import 'package:valo/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/core/di/service_locator.dart';
+import 'package:medcoco/core/init/dotenv_init.dart';
+import 'package:medcoco/core/init/file_downloader_init_stub.dart'
+    if (dart.library.io) 'package:medcoco/core/init/file_downloader_init.dart';
+import 'package:medcoco/core/init/observer_init.dart';
+import 'package:medcoco/core/init/url_strategy_stub.dart'
+    if (dart.library.html) 'package:medcoco/core/init/url_strategy_web.dart';
+import 'package:medcoco/core/init/window_init.dart';
+import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
 
 Future<void> appInit() async {
   WidgetsFlutterBinding.ensureInitialized();
