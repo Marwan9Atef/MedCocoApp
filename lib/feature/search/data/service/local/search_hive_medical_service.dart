@@ -36,16 +36,28 @@ class SearchHiveMedicalService implements SearchLocalMedicalService {
   }) async {
     try {
       final cachedAt = DateTime.now();
-      final cachedSearchResponse = searchResponse.copyWith(
-        results: searchResponse.results
-            .map((result) => result.copyWith(cachedAt: _formatDate(cachedAt)))
-            .toList(),
+      final newResults = searchResponse.results
+          .map((result) => result.copyWith(cachedAt: _formatDate(cachedAt)))
+          .toList();
+
+      final existing = getSearchResponse();
+      final existingIds = existing?.results.map((r) => r.imageId).toSet() ?? {};
+
+      final dedupedNewResults = newResults
+          .where((r) => !existingIds.contains(r.imageId))
+          .toList();
+
+      final mergedResults = [...dedupedNewResults, ...?existing?.results];
+
+      final mergedResponse = SearchResponseModel(
+        query: searchResponse.query,
+        count: mergedResults.length,
+        results: mergedResults,
       );
 
-      await _box.delete(_key);
       await _box.put(_key, {
         'time': cachedAt.millisecondsSinceEpoch,
-        'data': cachedSearchResponse.toJson(),
+        'data': mergedResponse.toJson(),
       });
       await _box.flush();
     } catch (exception) {
