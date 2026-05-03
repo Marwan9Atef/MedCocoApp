@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart' show SvgPicture;
+import 'package:medcoco/core/widget/simple_loading_indicator.dart';
 
 import '../generated/assets.dart';
 
 class RemoveContainer extends StatelessWidget {
   const RemoveContainer({
     super.key,
-    required this.onTap
+    required this.onTap,
+    this.isLoading = false,
   });
   final VoidCallback  onTap;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class RemoveContainer extends StatelessWidget {
           onTap: onTap,
           mouseCursor: SystemMouseCursors.click,
           borderRadius: BorderRadius.circular(8),
-          child: SvgPicture.asset(AppAssets.imagesRemoveIcon, fit: BoxFit.scaleDown),
+          child: isLoading
+              ? const SimpleLoadingIndicator()
+              : SvgPicture.asset(AppAssets.imagesRemoveIcon, fit: BoxFit.scaleDown),
         ),
       ),
     );

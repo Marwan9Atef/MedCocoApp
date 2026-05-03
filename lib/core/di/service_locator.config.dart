@@ -44,6 +44,8 @@ import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_remote_m
 import 'package:medcoco/feature/my_upload/domain/my_upload_repo.dart' as _i204;
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart'
     as _i766;
+import 'package:medcoco/feature/my_upload/presentation/cubit/remove_one_image_cubit.dart'
+    as _i943;
 import 'package:medcoco/feature/search/data/repo/search_repo_impl.dart'
     as _i338;
 import 'package:medcoco/feature/search/data/service/local/search_hive_medical_service.dart'
@@ -136,6 +138,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i766.MyUploadCubit>(
       () => _i766.MyUploadCubit(gh<_i204.MyUploadRepo>()),
+    );
+    gh.factory<_i943.RemoveOneImageCubit>(
+      () => _i943.RemoveOneImageCubit(gh<_i204.MyUploadRepo>()),
     );
     gh.lazySingleton<_i23.AuthRepo>(
       () => _i855.AuthRepoImpl(

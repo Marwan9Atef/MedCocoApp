@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medcoco/core/theme/app_style.dart';
 import 'package:medcoco/core/utils/context_util.dart';
+import 'package:medcoco/core/widget/desktop_refresh_indicator.dart';
 import 'package:medcoco/core/widget/remove_container.dart';
-
 
 import '../../../../core/widget/desktop_clear.dart';
 
@@ -13,20 +13,17 @@ class HistoryHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text("Search History",style: AppStyles.styleRegular36(context),),
+        Text("Search History", style: AppStyles.styleRegular36(context)),
         Spacer(),
-        context.screenWidth<800?RemoveContainer(
-          onTap: (){
-
-
-
-          },
-
-        ): DesktopClear(
-
-          onTap: (){},
-        ),
-
+        context.screenWidth < 800
+            ? RemoveContainer(onTap: () {})
+            : Row(
+                children: [
+                  DesktopRefreshIndicator(onTap: () {}),
+                  const SizedBox(width: 16),
+                  DesktopClear(onTap: () {}),
+                ],
+              ),
       ],
     );
   }

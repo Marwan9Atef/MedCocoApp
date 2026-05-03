@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medcoco/core/widget/advance_loading_indicator.dart';
+import 'package:medcoco/core/widget/empty_result_indicator.dart';
 import 'package:medcoco/core/widget/error_indicator.dart';
-
-import 'package:medcoco/core/widget/simple_loading_indicator.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_states.dart';
 import 'package:medcoco/feature/my_upload/presentation/screens/desktop/my_upload_desktop_list.dart';
@@ -40,11 +40,13 @@ class _MyUploadPageState extends State<MyUploadPage> {
             child: BlocBuilder<MyUploadCubit, MyUploadStates>(
               builder: (context, state) {
                 if (state is MyUploadLoading) {
-                  return const Center(child: SimpleLoadingIndicator());
+                  return const Center(child: AdvanceLoadingIndicator());
                 } else if (state is MyUploadFailure) {
-                  return ErrorIndicator(onPressed: () {
-                    context.read<MyUploadCubit>().getMyImages();
-                  });
+                  return ErrorIndicator(
+                    onPressed: () {
+                      context.read<MyUploadCubit>().getMyImages();
+                    },
+                  );
                 } else if (state is MyUploadSuccess) {
                   return RefreshIndicator(
                     onRefresh: () {
@@ -71,6 +73,13 @@ class _MyUploadPageState extends State<MyUploadPage> {
                           child: BlocBuilder<MyUploadCubit, MyUploadStates>(
                             builder: (context, state) {
                               if (state is MyUploadSuccess) {
+                                if (state.result.images.isEmpty) {
+                                  return const EmptyResultIndicator(
+                                    subMessage:
+                                        "No images have been uploaded yet.",
+                                  );
+                                }
+
                                 return isDesktop
                                     ? MyUploadDesktopList(
                                         images: state.result.images,
@@ -86,8 +95,7 @@ class _MyUploadPageState extends State<MyUploadPage> {
                       ],
                     ),
                   );
-                }
-               else {
+                } else {
                   return const SizedBox();
                 }
               },

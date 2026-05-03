@@ -6,6 +6,12 @@ class SimpleLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Center(child: CircularProgressIndicator(color: AppColor.white,)));
+    return const Center(
+      child: SizedBox(
+        width: 24,
+        height: 24,
+        child: CircularProgressIndicator(color: AppColor.white, strokeWidth: 2),
+      ),
+    );
   }
 }
