@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medcoco/core/widget/error_indicator.dart';
 
 import 'package:medcoco/core/widget/simple_loading_indicator.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
@@ -41,7 +42,9 @@ class _MyUploadPageState extends State<MyUploadPage> {
                 if (state is MyUploadLoading) {
                   return const Center(child: SimpleLoadingIndicator());
                 } else if (state is MyUploadFailure) {
-                  return Center(child: Text(state.error));
+                  return ErrorIndicator(onPressed: () {
+                    context.read<MyUploadCubit>().getMyImages();
+                  });
                 } else if (state is MyUploadSuccess) {
                   return RefreshIndicator(
                     onRefresh: () {
@@ -83,7 +86,8 @@ class _MyUploadPageState extends State<MyUploadPage> {
                       ],
                     ),
                   );
-                } else {
+                }
+               else {
                   return const SizedBox();
                 }
               },

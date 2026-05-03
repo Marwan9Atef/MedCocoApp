@@ -96,8 +96,8 @@ class UploadSearch extends SearchDelegate {
             return SearchView(searchBuildResults: filteredResults);
           } else if (state is SearchLoading) {
             return const Center(child: SimpleLoadingIndicator());
-          } else {
-            return Center(child: Text("No results found"));
+          } else  {
+            return Center(child: Text("No results found",style: AppStyles.styleRegular16(context),));
           }
         },
       ),
