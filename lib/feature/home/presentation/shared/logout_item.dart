@@ -5,6 +5,7 @@ import 'package:medcoco/core/generated/assets.dart';
 import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
 import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:medcoco/feature/history/presentation/cubit/history_cubit.dart';
 
 class LogoutItem extends StatelessWidget {
   const LogoutItem({super.key,});
@@ -20,6 +21,7 @@ class LogoutItem extends StatelessWidget {
       mouseCursor: SystemMouseCursors.click,
       onTap: () {
         serviceLocator<AuthCubit>().logout();
+        serviceLocator<HistoryCubit>().clearHistory();
       },
       borderRadius: BorderRadius.circular(14),
       hoverColor: AppColor.red.withValues(alpha: 0.1),
