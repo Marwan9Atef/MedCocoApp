@@ -7,5 +7,7 @@ abstract class SearchLocalMedicalService {
 
   SearchResponseModel? getSearchResponse();
 
+  Future<SearchResponseModel?> removeSearchResult(String imageId);
+
   Future<void> clearSearchResponse();
 }

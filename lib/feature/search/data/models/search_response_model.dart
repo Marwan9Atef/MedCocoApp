@@ -23,6 +23,18 @@ class SearchResponseModel {
         'count': count,
         'results': results.map((result) => result.toJson()).toList(),
       };
+
+  SearchResponseModel copyWith({
+    String? query,
+    int? count,
+    List<SearchResultModel>? results,
+  }) {
+    return SearchResponseModel(
+      query: query ?? this.query,
+      count: count ?? this.count,
+      results: results ?? this.results,
+    );
+  }
 }
 
 class SearchResultModel {
@@ -32,6 +44,7 @@ class SearchResultModel {
   final String fileUrl;
   final double similarityScore;
   final String caption;
+  final String cachedAt;
 
   const SearchResultModel({
     required this.imageId,
@@ -40,6 +53,7 @@ class SearchResultModel {
     required this.fileUrl,
     required this.similarityScore,
     required this.caption,
+    this.cachedAt = '',
   });
 
   factory SearchResultModel.fromJson(Map<String, dynamic> json) =>
@@ -50,6 +64,7 @@ class SearchResultModel {
         fileUrl: json['file_url'] as String,
         similarityScore: (json['similarity_score'] as num).toDouble(),
         caption: json['caption'] as String,
+        cachedAt: json['cached_at'] as String? ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,5 +74,26 @@ class SearchResultModel {
         'file_url': fileUrl,
         'similarity_score': similarityScore,
         'caption': caption,
+        'cached_at': cachedAt,
       };
+
+  SearchResultModel copyWith({
+    String? imageId,
+    String? filename,
+    String? savedFilename,
+    String? fileUrl,
+    double? similarityScore,
+    String? caption,
+    String? cachedAt,
+  }) {
+    return SearchResultModel(
+      imageId: imageId ?? this.imageId,
+      filename: filename ?? this.filename,
+      savedFilename: savedFilename ?? this.savedFilename,
+      fileUrl: fileUrl ?? this.fileUrl,
+      similarityScore: similarityScore ?? this.similarityScore,
+      caption: caption ?? this.caption,
+      cachedAt: cachedAt ?? this.cachedAt,
+    );
+  }
 }

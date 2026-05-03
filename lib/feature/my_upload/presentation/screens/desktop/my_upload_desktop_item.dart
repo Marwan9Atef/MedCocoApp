@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/core/generated/assets.dart';
 import 'package:medcoco/core/routes/route_center.dart';
 import 'package:medcoco/core/theme/app_style.dart';
-import 'package:medcoco/core/utils/app_snack_bars.dart';
 import 'package:medcoco/core/widget/remove_container.dart';
 import 'package:medcoco/core/widget/simple_loading_indicator.dart';
 import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.dart';
-import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/remove_one_image_cubit.dart';
 import 'package:medcoco/feature/my_upload/presentation/cubit/remove_one_image_states.dart';
 
@@ -73,47 +70,23 @@ class MyUploadDesktopItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    BlocProvider(
-                      create: (context) =>
-                          serviceLocator<RemoveOneImageCubit>(),
-                      child:
-                          BlocConsumer<
-                            RemoveOneImageCubit,
-                            RemoveOneImageStates
-                          >(
-                            listener: (context, state) {
-                              if (state is RemoveOneImageSuccess) {
-                                AppSnackBars.showSuccessSnackBar(
-                                  context: context,
-                                  message: 'Image removed successfully',
-                                );
-                                context.read<MyUploadCubit>().getMyImages();
-                              } else if (state is RemoveOneImageFailure) {
-                                AppSnackBars.showErrorSnackBar(
-                                  context: context,
-                                  message: state.error,
-                                );
-                              }
-                            },
-                            builder: (context, state) {
-                              final isLoading = state is RemoveOneImageLoading;
-                              return AbsorbPointer(
-                                absorbing: isLoading,
-                                child: RemoveContainer(
-                                  isLoading: isLoading,
-                                  onTap: () async {
-                                   await context
-                                        .read<RemoveOneImageCubit>()
-                                        .remmoveOneImageFromMyUpload(
-                                          image.imageId,
-                                        );
-                                    if (!context.mounted) return;
-                                    context.read<MyUploadCubit>().getMyImages();
-                                  },
-                                ),
-                              );
+                    BlocBuilder<RemoveOneImageCubit, RemoveOneImageStates>(
+                      builder: (context, state) {
+                        final isLoading =
+                            state is RemoveOneImageLoading &&
+                            state.imageId == image.imageId;
+                        return AbsorbPointer(
+                          absorbing: isLoading,
+                          child: RemoveContainer(
+                            isLoading: isLoading,
+                            onTap: () async {
+                              await context
+                                  .read<RemoveOneImageCubit>()
+                                  .remmoveOneImageFromMyUpload(image.imageId);
                             },
                           ),
+                        );
+                      },
                     ),
                   ],
                 ),

@@ -4,7 +4,11 @@ abstract class RemoveOneImageStates {}
 
 class RemoveOneImageInitial extends RemoveOneImageStates {}
 
-class RemoveOneImageLoading extends RemoveOneImageStates {}
+class RemoveOneImageLoading extends RemoveOneImageStates {
+  final String imageId;
+
+  RemoveOneImageLoading({required this.imageId});
+}
 
 class RemoveOneImageSuccess extends RemoveOneImageStates {
   final RemoveOneImageResponseModel result;

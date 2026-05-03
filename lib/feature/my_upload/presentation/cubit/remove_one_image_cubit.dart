@@ -10,7 +10,7 @@ class RemoveOneImageCubit extends Cubit<RemoveOneImageStates> {
   RemoveOneImageCubit(this._myUploadRepo) : super(RemoveOneImageInitial());
 
   Future<void> remmoveOneImageFromMyUpload(String imageId) async {
-    emit(RemoveOneImageLoading());
+    emit(RemoveOneImageLoading(imageId: imageId));
     final result = await _myUploadRepo.remmoveOneImageFromMyUpload(imageId);
     result.fold(
       (failure) => emit(RemoveOneImageFailure(error: failure.message)),

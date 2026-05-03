@@ -35,6 +35,12 @@ import 'package:medcoco/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i587;
 import 'package:medcoco/feature/auth/presentation/cubit/register/register_cubit.dart'
     as _i925;
+import 'package:medcoco/feature/history/data/repo/history_repo_impl.dart'
+    as _i205;
+import 'package:medcoco/feature/history/domain/repo/history_repo.dart'
+    as _i1064;
+import 'package:medcoco/feature/history/presentation/cubit/history_cubit.dart'
+    as _i597;
 import 'package:medcoco/feature/my_upload/data/repo/my_upload_repo_impl.dart'
     as _i634;
 import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_api_medical_service.dart'
@@ -89,6 +95,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i707.AuthLocalMedicalService>(
       () =>
           _i572.AuthLocalSecureStorageService(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.lazySingleton<_i1064.HistoryRepo>(
+      () => _i205.HistoryRepoImpl(gh<_i23.SearchLocalMedicalService>()),
+    );
+    gh.factory<_i597.HistoryCubit>(
+      () => _i597.HistoryCubit(gh<_i1064.HistoryRepo>()),
     );
     gh.lazySingleton<_i560.AuthCubit>(
       () => _i560.AuthCubit(gh<_i707.AuthLocalMedicalService>()),

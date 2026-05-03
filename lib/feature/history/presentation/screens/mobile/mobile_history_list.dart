@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:medcoco/feature/search/data/models/search_response_model.dart';
 
-import '../../../../../core/dummy/model/ray_model.dart';
 import 'mobile_history_item.dart';
 
 class MobileHistoryList extends StatelessWidget {
-  const MobileHistoryList({super.key});
+  const MobileHistoryList({super.key, required this.results});
+
+  final List<SearchResultModel> results;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: RayModel.rayList.length,
+      itemCount: results.length,
       itemBuilder: (context, index) {
-        return MobileHistoryItem(rayModel: RayModel.rayList[index])
+        return MobileHistoryItem(result: results[index])
             .animate(delay: (index * 40).ms)
             .fadeIn(
               duration: 220.ms,

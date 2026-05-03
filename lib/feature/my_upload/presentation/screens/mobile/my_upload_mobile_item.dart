@@ -18,7 +18,7 @@ class MyUploadMobileItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-       MyUploadMobileImage(imagePath: image.fileUrl,),
+       MyUploadMobileImage(imagePath: image.fileUrl,imageId: image.imageId,),
           const SizedBox(height: 10),
 
     Text(image.filename,style: AppStyles.styleRegular20(context),),
