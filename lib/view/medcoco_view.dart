@@ -34,18 +34,15 @@ class MedCocoView extends StatelessWidget {
               bottomNavigationBar: isDesktop ? null : const CustomNavBar(),
               body: BlocBuilder<PageCubit, int>(
                 builder: (context, currentPage) {
+                  final pageCubit = context.read<PageCubit>();
                   return IndexedStack(
                     index: currentPage,
                     children: [
-                      BlocProvider.value(
-                        value: context.read<MyUploadCubit>(),
-                        child: UploadPage(),
+                      UploadPage(),
+                      MyUploadPage(),
+                      HistoryPage(
+                        key: ValueKey('history_${pageCubit.historyKey}'),
                       ),
-                      BlocProvider.value(
-                        value: context.read<MyUploadCubit>(),
-                        child: MyUploadPage(),
-                      ),
-                      HistoryPage(),
                     ],
                   );
                 },

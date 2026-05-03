@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:medcoco/core/error/app_exception.dart';
 import 'package:medcoco/core/failure/failure.dart';
 import 'package:medcoco/feature/my_upload/data/models/my_images_response_model.dart';
+import 'package:medcoco/feature/my_upload/data/models/remove_one_image_response_model.dart';
 import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_remote_medical_service.dart';
 import 'package:medcoco/feature/my_upload/domain/my_upload_repo.dart';
 
@@ -27,6 +28,19 @@ class MyUploadRepoImpl implements MyUploadRepo {
     try {
       final message = await _remoteService.removeMyUploadImage();
       return Right(message);
+    } on AppException catch (exception) {
+      return Left(Failure(exception.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, RemoveOneImageResponseModel>>
+      remmoveOneImageFromMyUpload(String imageId) async {
+    try {
+      final response = await _remoteService.remmoveOneImageFromMyUpload(
+        imageId,
+      );
+      return Right(response);
     } on AppException catch (exception) {
       return Left(Failure(exception.message));
     }

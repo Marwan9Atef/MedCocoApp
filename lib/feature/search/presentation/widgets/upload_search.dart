@@ -4,7 +4,7 @@ import 'package:medcoco/core/theme/app_color.dart';
 import 'package:medcoco/core/theme/app_style.dart';
 import 'package:medcoco/core/utils/app_snack_bars.dart';
 import 'package:medcoco/core/utils/context_util.dart';
-import 'package:medcoco/core/widget/simple_loading_indicator.dart';
+import 'package:medcoco/core/widget/advance_loading_indicator.dart';
 import 'package:medcoco/feature/search/data/models/search_request_model.dart';
 import 'package:medcoco/feature/search/data/models/search_response_model.dart';
 import 'package:medcoco/feature/search/presentation/cubit/search_cubit.dart';
@@ -18,7 +18,9 @@ class UploadSearch extends SearchDelegate {
   final SearchCubit searchCubit;
   int? _resultLimit;
 
-  UploadSearch({required this.searchCubit});
+  UploadSearch({required this.searchCubit}) {
+    searchCubit.reset();
+  }
 
   @override
   String get searchFieldLabel => "search by keywords...";
@@ -68,6 +70,7 @@ class UploadSearch extends SearchDelegate {
         if (number != null) {
           _resultLimit = number;
           if (context.mounted) {
+            searchCubit.reset();
             searchCubit.search(SearchRequestModel(query: query, topK: number));
             super.showResults(context);
           }
@@ -87,17 +90,19 @@ class UploadSearch extends SearchDelegate {
       child: BlocBuilder<SearchCubit, SearchStates>(
         builder: (context, state) {
           if (state is SearchSuccess) {
-            final List<SearchResultModel> filteredResults = state.result.results
-                .where(
-                  (item) =>
-                      item.caption.toLowerCase().contains(query.toLowerCase()),
-                )
-                .toList();
+            final List<SearchResultModel> filteredResults =
+                state.result.results;
+
             return SearchView(searchBuildResults: filteredResults);
           } else if (state is SearchLoading) {
-            return const Center(child: SimpleLoadingIndicator());
+            return const Center(child: AdvanceLoadingIndicator());
           } else {
-            return Center(child: Text("No results found"));
+            return Center(
+              child: Text(
+                "No results found",
+                style: AppStyles.styleRegular16(context),
+              ),
+            );
           }
         },
       ),

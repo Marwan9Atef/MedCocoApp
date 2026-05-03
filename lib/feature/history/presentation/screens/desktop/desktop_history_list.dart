@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:medcoco/feature/search/data/models/search_response_model.dart';
 
-import '../../../../../core/dummy/model/ray_model.dart';
 import 'disktop_history_item.dart';
 
 class DesktopHistoryList extends StatelessWidget {
-  const DesktopHistoryList({super.key});
+  const DesktopHistoryList({super.key, required this.results});
+
+  final List<SearchResultModel> results;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: RayModel.rayList.length,
+      itemCount: results.length,
       itemBuilder: (context, index) {
-        return DesktopHistoryItem(rayModel: RayModel.rayList[index])
+        return DesktopHistoryItem(result: results[index])
             .animate(delay: (index * 40).ms)
             .fadeIn(
               duration: 220.ms,

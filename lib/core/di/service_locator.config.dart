@@ -35,6 +35,12 @@ import 'package:medcoco/feature/auth/presentation/cubit/login/login_cubit.dart'
     as _i587;
 import 'package:medcoco/feature/auth/presentation/cubit/register/register_cubit.dart'
     as _i925;
+import 'package:medcoco/feature/history/data/repo/history_repo_impl.dart'
+    as _i205;
+import 'package:medcoco/feature/history/domain/repo/history_repo.dart'
+    as _i1064;
+import 'package:medcoco/feature/history/presentation/cubit/history_cubit.dart'
+    as _i597;
 import 'package:medcoco/feature/my_upload/data/repo/my_upload_repo_impl.dart'
     as _i634;
 import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_api_medical_service.dart'
@@ -44,8 +50,14 @@ import 'package:medcoco/feature/my_upload/data/service/remote/my_upload_remote_m
 import 'package:medcoco/feature/my_upload/domain/my_upload_repo.dart' as _i204;
 import 'package:medcoco/feature/my_upload/presentation/cubit/my_upload_cubit.dart'
     as _i766;
+import 'package:medcoco/feature/my_upload/presentation/cubit/remove_one_image_cubit.dart'
+    as _i943;
 import 'package:medcoco/feature/search/data/repo/search_repo_impl.dart'
     as _i338;
+import 'package:medcoco/feature/search/data/service/local/search_hive_medical_service.dart'
+    as _i289;
+import 'package:medcoco/feature/search/data/service/local/search_local_medical_service.dart'
+    as _i23;
 import 'package:medcoco/feature/search/data/service/remote/search_api_medical_service.dart'
     as _i838;
 import 'package:medcoco/feature/search/data/service/remote/search_remote_medical_service.dart'
@@ -77,9 +89,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.FlutterSecureStorage>(
       () => registerModule.secureStorage,
     );
+    gh.lazySingleton<_i23.SearchLocalMedicalService>(
+      () => _i289.SearchHiveMedicalService(),
+    );
     gh.lazySingleton<_i707.AuthLocalMedicalService>(
       () =>
           _i572.AuthLocalSecureStorageService(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.lazySingleton<_i1064.HistoryRepo>(
+      () => _i205.HistoryRepoImpl(gh<_i23.SearchLocalMedicalService>()),
+    );
+    gh.factory<_i597.HistoryCubit>(
+      () => _i597.HistoryCubit(gh<_i1064.HistoryRepo>()),
     );
     gh.lazySingleton<_i560.AuthCubit>(
       () => _i560.AuthCubit(gh<_i707.AuthLocalMedicalService>()),
@@ -113,7 +134,10 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i634.MyUploadRepoImpl(gh<_i1002.MyUploadRemoteMedicalService>()),
     );
     gh.lazySingleton<_i472.SearchRepo>(
-      () => _i338.SearchRepoImpl(gh<_i117.SearchRemoteMedicalService>()),
+      () => _i338.SearchRepoImpl(
+        gh<_i117.SearchRemoteMedicalService>(),
+        gh<_i23.SearchLocalMedicalService>(),
+      ),
     );
     gh.lazySingleton<_i517.UploadRepo>(
       () => _i830.UploadRepoImpl(gh<_i129.UploadRemoteMedicalService>()),
@@ -126,6 +150,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i766.MyUploadCubit>(
       () => _i766.MyUploadCubit(gh<_i204.MyUploadRepo>()),
+    );
+    gh.factory<_i943.RemoveOneImageCubit>(
+      () => _i943.RemoveOneImageCubit(gh<_i204.MyUploadRepo>()),
     );
     gh.lazySingleton<_i23.AuthRepo>(
       () => _i855.AuthRepoImpl(

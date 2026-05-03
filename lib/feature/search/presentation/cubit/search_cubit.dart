@@ -18,4 +18,8 @@ class SearchCubit extends Cubit<SearchStates> {
       (result) => emit(SearchSuccess(result: result)),
     );
   }
+
+  void reset() {
+    emit(SearchInitial());
+  }
 }
