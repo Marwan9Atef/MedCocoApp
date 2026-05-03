@@ -4,14 +4,16 @@ import 'package:medcoco/core/error/app_exception.dart';
 import 'package:medcoco/core/failure/failure.dart';
 import 'package:medcoco/feature/search/data/models/search_request_model.dart';
 import 'package:medcoco/feature/search/data/models/search_response_model.dart';
+import 'package:medcoco/feature/search/data/service/local/search_local_medical_service.dart';
 import 'package:medcoco/feature/search/data/service/remote/search_remote_medical_service.dart';
 import 'package:medcoco/feature/search/domain/repo/search_repo.dart';
 
 @LazySingleton(as: SearchRepo)
 class SearchRepoImpl implements SearchRepo {
   final SearchRemoteMedicalService _remoteService;
+  final SearchLocalMedicalService _localService;
 
-  SearchRepoImpl(this._remoteService);
+  SearchRepoImpl(this._remoteService, this._localService);
 
   @override
   Future<Either<Failure, SearchResponseModel>> search(
@@ -19,6 +21,7 @@ class SearchRepoImpl implements SearchRepo {
   ) async {
     try {
       final response = await _remoteService.search(request);
+      await _localService.saveSearchResponse(searchResponse: response);
       return Right(response);
     } on AppException catch (exception) {
       return Left(Failure(exception.message));

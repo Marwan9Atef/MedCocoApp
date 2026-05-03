@@ -17,6 +17,12 @@ class SearchResponseModel {
             .map((e) => SearchResultModel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
+
+  Map<String, dynamic> toJson() => {
+        'query': query,
+        'count': count,
+        'results': results.map((result) => result.toJson()).toList(),
+      };
 }
 
 class SearchResultModel {
@@ -45,4 +51,13 @@ class SearchResultModel {
         similarityScore: (json['similarity_score'] as num).toDouble(),
         caption: json['caption'] as String,
       );
+
+  Map<String, dynamic> toJson() => {
+        'image_id': imageId,
+        'filename': filename,
+        'saved_filename': savedFilename,
+        'file_url': fileUrl,
+        'similarity_score': similarityScore,
+        'caption': caption,
+      };
 }

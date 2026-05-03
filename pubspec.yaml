@@ -56,6 +56,8 @@ dependencies:
   shared_preferences: ^2.5.4
   flutter_secure_storage: ^10.0.0
   flutter_dotenv: ^5.2.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
   background_downloader: ^8.5.5
   flutter_animate: ^4.5.2
   dicom_parser: ^0.0.15
