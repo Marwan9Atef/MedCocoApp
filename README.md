@@ -22,28 +22,7 @@ Medcoco is an AI-powered medical imaging search platform designed for healthcare
 - 🔐 **Secure Authentication** - Multi-factor authentication with OTP verification
 - 📱 **Cross-Platform** - Works seamlessly on mobile, desktop, and web
 
----
 
-## ✨ Features
-
-### Authentication
-- User registration and login
-- OTP-based verification
-- Secure session management
-- Remember me functionality
-
-### File Management
-- Upload X-ray, MRI, CT raw images
-- Image picker integration
-- Drag-and-drop upload (desktop)
-- Background file downloading
-- Upload history tracking
-
-### User Experience
-- Responsive design for all screen sizes
-- Smooth animations and transitions
-- Offline capability for stored data
-- Intuitive navigation with go_router
 
 
 ---
