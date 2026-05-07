@@ -17,15 +17,15 @@
 
 ## 📋 About
 
-Medcoco is a comprehensive medical imaging application designed for healthcare professionals and patients. It provides secure DICOM file management, image viewing, upload capabilities, and a seamless cross-platform experience built with Flutter.
+Medcoco is an AI-powered medical imaging search platform designed for healthcare professionals and medical students. It enables users to upload X-ray, MRI, and CT raw images, then search through them using simple natural language queries powered by AI. Doctors can quickly find specific cases for diagnosis, while medical students can efficiently search and study medical imaging cases.
 
 ### Key Capabilities
-- 🏥 **DICOM File Support** - Upload and view medical imaging formats
+- 🩻 **Medical Image Upload** - Upload X-ray, MRI, CT raw images securely
+- 🤖 **AI-Powered Search** - Find cases using simple natural language queries
+- �‍⚕️ **For Doctors** - Quickly locate specific cases for diagnosis and reference
+- � **For Students** - Search and study medical imaging cases efficiently
 - 🔐 **Secure Authentication** - Multi-factor authentication with OTP verification
-- 📤 **Easy Upload** - Drag-and-drop file upload with background downloading
-- 🔍 **Advanced Search** - Find medical records quickly with intelligent search
 - 📱 **Cross-Platform** - Works seamlessly on mobile, desktop, and web
-- 💾 **Local Storage** - Secure data persistence with Hive and secure storage
 
 ---
 
@@ -38,7 +38,7 @@ Medcoco is a comprehensive medical imaging application designed for healthcare p
 - Remember me functionality
 
 ### File Management
-- DICOM file upload to backend
+- Upload X-ray, MRI, CT raw images
 - Image picker integration
 - Drag-and-drop upload (desktop)
 - Background file downloading
