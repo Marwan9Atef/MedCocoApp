@@ -1,5 +1,12 @@
 # Medcoco
 
+<div align="center">
+
+**AI-Powered Medical Imaging Search Platform**
+
+Upload X-ray, MRI, CT images • Search with natural language • For doctors & students
+
+</div>
 
 ---
 
@@ -43,31 +50,17 @@ Medcoco is an AI-powered medical imaging search platform designed for healthcare
 
 ## 📸 Screenshots
 
-### Desktop Experience
+### Medical Imaging Samples
 
 <div align="center">
 
-| Dashboard | File Upload |
-|-----------|-------------|
-| ![Desktop Dashboard](assets/screenshots/desktop/dashboard.png) | ![Desktop Upload](assets/screenshots/desktop/upload.png) |
+| Brain Scan | Chest X-Ray | Echocardiography |
+|------------|-------------|------------------|
+| ![Brain Scan](assets/images/Brain.jpg) | ![Chest X-Ray](assets/images/Chest.jpg) | ![Echocardiography](assets/images/Echocardiography.jpg) |
 
-| DICOM Viewer | Search & History |
-|---------------|------------------|
-| ![Desktop Viewer](assets/screenshots/desktop/viewer.png) | ![Desktop Search](assets/screenshots/desktop/search.png) |
-
-</div>
-
-### Mobile Experience
-
-<div align="center">
-
-| Login Screen | Home Screen | Upload Screen |
-|--------------|--------------|---------------|
-| ![Mobile Login](assets/screenshots/mobile/login.png) | ![Mobile Home](assets/screenshots/mobile/home.png) | ![Mobile Upload](assets/screenshots/mobile/upload.png) |
-
-| DICOM Viewer |
-|--------------|
-| ![Mobile Viewer](assets/screenshots/mobile/viewer.png) |
+| App Demo |
+|----------|
+| ![Ray Demo](assets/images/rayDemo.png) |
 
 </div>
 
