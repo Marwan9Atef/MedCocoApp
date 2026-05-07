@@ -50,17 +50,31 @@ Medcoco is an AI-powered medical imaging search platform designed for healthcare
 
 ## 📸 Screenshots
 
-### Medical Imaging Samples
+### Desktop Experience
 
 <div align="center">
 
-| Brain Scan | Chest X-Ray | Echocardiography |
-|------------|-------------|------------------|
-| ![Brain Scan](assets/images/Brain.jpg) | ![Chest X-Ray](assets/images/Chest.jpg) | ![Echocardiography](assets/images/Echocardiography.jpg) |
+| Authentication | Upload |
+|----------------|--------|
+| ![Desktop Auth](assets/presentation/desktopAuth.png) | ![Desktop Upload](assets/presentation/desktopUpload.png) |
 
-| App Demo |
-|----------|
-| ![Ray Demo](assets/images/rayDemo.png) |
+| Search & History | My Upload & History |
+|------------------|---------------------|
+| ![Desktop Search](assets/presentation/desktopSearch.png) | ![Desktop My Upload & History](assets/presentation/desktopMyUploadAndHistory.png) |
+
+</div>
+
+### Mobile Experience
+
+<div align="center">
+
+| Authentication | Upload & My Upload |
+|----------------|---------------------|
+| ![Mobile Auth](assets/presentation/mobileAuth.png) | ![Mobile Upload & My Upload](assets/presentation/mobileUploadAndMyUpload.png) |
+
+| Search & History |
+|------------------|
+| ![Mobile Search & History](assets/presentation/mobileSearchAndHistory.png) |
 
 </div>
 
