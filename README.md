@@ -58,7 +58,7 @@ Medcoco is an AI-powered medical imaging search platform designed for healthcare
 |----------------|--------|
 | ![Desktop Auth](assets/presentation/desktopAuth.png) | ![Desktop Upload](assets/presentation/desktopUpload.png) |
 
-| Search & History | My Upload & History |
+| Search  | My Upload & History |
 |------------------|---------------------|
 | ![Desktop Search](assets/presentation/desktopSearch.png) | ![Desktop My Upload & History](assets/presentation/desktopMyUploadAndHistory.png) |
 
