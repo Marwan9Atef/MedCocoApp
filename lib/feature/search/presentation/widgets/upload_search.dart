@@ -92,6 +92,14 @@ class UploadSearch extends SearchDelegate {
           if (state is SearchSuccess) {
             final List<SearchResultModel> filteredResults =
                 state.result.results;
+                if(state.result.results.isEmpty ){
+                  return Center(
+              child: Text(
+                "No results found",
+                style: AppStyles.styleRegular16(context),
+              ),
+            );
+                }
 
             return SearchView(searchBuildResults: filteredResults);
           } else if (state is SearchLoading) {
