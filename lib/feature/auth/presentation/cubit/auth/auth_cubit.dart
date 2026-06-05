@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/feature/auth/data/service/local/auth_local_medical_service.dart';
 import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_status.dart';
+import 'package:medcoco/feature/history/presentation/cubit/history_cubit.dart';
 
 @lazySingleton
 class AuthCubit extends Cubit<AuthStatus> {
@@ -26,6 +28,7 @@ class AuthCubit extends Cubit<AuthStatus> {
 
   Future<void> logout() async {
     await _localService.removeUserInfo();
+    serviceLocator<HistoryCubit>().clearHistory();
     emit(AuthStatus.unauthenticated);
   }
 }

@@ -1,7 +1,7 @@
 class AppAssets {
   AppAssets._();
 
-  static const String logo = 'assets/images/logo.svg';
+  static const String logo = 'assets/images/valoLogo.png';
   static const String profile = 'assets/images/profile.svg';
   static const String email = 'assets/images/email.svg';
   static const String password = 'assets/images/password.svg';

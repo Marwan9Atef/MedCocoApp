@@ -13,9 +13,9 @@ class ApiClient {
   ApiClient(this._authLocal, this._tokenRefresher) {
     final baseOptions = BaseOptions(
       baseUrl: ApiConstant.baseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      sendTimeout: const Duration(seconds: 30),
+      connectTimeout: const Duration(seconds: 120),
+      receiveTimeout: const Duration(seconds: 120),
+      sendTimeout: const Duration(seconds: 120),
       receiveDataWhenStatusError: true,
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,8 @@ class ApiClient {
             return;
           }
           try {
-            final access = await _tokenRefresher.refreshAccessTokenSingleFlight();
+            final access = await _tokenRefresher
+                .refreshAccessTokenSingleFlight();
             if (access == null || access.isEmpty) {
               await _tokenRefresher.invalidateSession();
               handler.next(err);
@@ -110,10 +111,7 @@ class ApiClient {
   final AuthTokenRefresher _tokenRefresher;
   late final Dio _dio;
 
-  Future<Response> get(
-    String path, {
-    Map<String, dynamic>? queryParameters,
-  }) =>
+  Future<Response> get(String path, {Map<String, dynamic>? queryParameters}) =>
       _dio.get(path, queryParameters: queryParameters);
 
   Future<Response> post(
@@ -122,35 +120,31 @@ class ApiClient {
     Map<String, dynamic>? queryParameters,
     ProgressCallback? onSendProgress,
     CancelToken? cancelToken,
-  }) =>
-      _dio.post(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-        onSendProgress: onSendProgress,
-        cancelToken: cancelToken,
-      );
+  }) => _dio.post(
+    path,
+    data: data,
+    queryParameters: queryParameters,
+    onSendProgress: onSendProgress,
+    cancelToken: cancelToken,
+  );
 
   Future<Response> put(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
-  }) =>
-      _dio.put(path, data: data, queryParameters: queryParameters);
+  }) => _dio.put(path, data: data, queryParameters: queryParameters);
 
   Future<Response> patch(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
-  }) =>
-      _dio.patch(path, data: data, queryParameters: queryParameters);
+  }) => _dio.patch(path, data: data, queryParameters: queryParameters);
 
   Future<Response> delete(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
-  }) =>
-      _dio.delete(path, data: data, queryParameters: queryParameters);
+  }) => _dio.delete(path, data: data, queryParameters: queryParameters);
 }
 
 String _normalizePath(String path) {

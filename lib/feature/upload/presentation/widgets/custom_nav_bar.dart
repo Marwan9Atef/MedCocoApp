@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
-import 'package:medcoco/feature/history/presentation/cubit/history_cubit.dart';
 import 'package:medcoco/feature/home/presentation/cubit/page_cubit.dart';
 
 import '../../data/models/nav_model.dart';
@@ -22,7 +21,7 @@ class CustomNavBar extends StatelessWidget {
           onDestinationSelected: (index) {
             if (index == _logoutIndex) {
               serviceLocator<AuthCubit>().logout();
-              serviceLocator<HistoryCubit>().clearHistory();
+   
               return;
             }
             if (index == currentTab) return;
