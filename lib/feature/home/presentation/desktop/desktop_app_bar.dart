@@ -34,7 +34,8 @@ class DesktopAppBar extends StatelessWidget {
                 hoverColor: AppColor.blue.withValues(alpha: 0.2),
                 focusColor: AppColor.blue.withValues(alpha: 0.2),
                 splashColor: AppColor.blue.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(10),
+
                 child: AppBarItem(
                   isActive: currentTab == index,
                   item: ItemModel.items[index],

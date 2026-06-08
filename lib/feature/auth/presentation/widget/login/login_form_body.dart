@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:medcoco/core/di/service_locator.dart';
 import 'package:medcoco/core/routes/route_center.dart';
+import 'package:medcoco/core/theme/app_style.dart';
 import 'package:medcoco/core/utils/app_snack_bars.dart';
+import 'package:medcoco/core/utils/context_util.dart';
 import 'package:medcoco/core/widget/custom_button.dart';
 import 'package:medcoco/feature/auth/data/models/login_request_model.dart';
 import 'package:medcoco/feature/auth/presentation/cubit/auth/auth_cubit.dart';
@@ -84,6 +86,11 @@ class LoginFormBody extends StatelessWidget {
             prefText: "Don't have an account? ",
             suffixText: "Sign Up",
           ),
+          const SizedBox(height: 10),
+          Center(child: Text("© 2026 Medcoco Team. All Rights Reserved.",style: AppStyles.styleRegular14(context),)),
+          context.screenWidth < 800 ? const SizedBox(): Center(child: Text("Developed as a Graduation Project Faculty of IS & CS October 6 University",style: AppStyles.styleRegular14(context),)),
+
+      
         ],
       ),
     );

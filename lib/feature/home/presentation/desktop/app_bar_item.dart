@@ -15,7 +15,6 @@ class AppBarItem extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       curve: Curves.bounceInOut,
-      margin: const EdgeInsets.only(right: 8),
       padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 12),
       decoration:isActive? ShapeDecoration(
         gradient: LinearGradient(

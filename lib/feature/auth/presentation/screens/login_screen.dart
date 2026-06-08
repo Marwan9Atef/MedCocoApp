@@ -41,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       emailGetter: () => _email,
                       passwordGetter: () => _password,
                     ),
+                    
                   ],
                   ),
                 ),
