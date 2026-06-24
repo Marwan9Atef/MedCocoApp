@@ -16,11 +16,11 @@ Medcoco is an AI-powered medical imaging search platform designed for healthcare
 
 ### Key Capabilities
 - 🩻 **Medical Image Upload** - Upload X-ray, MRI, CT raw images securely
-- 🤖 **AI-Powered Search** - Find cases using simple natural language queries
-- �‍⚕️ **For Doctors** - Quickly locate specific cases for diagnosis and reference
-- � **For Students** - Search and study medical imaging cases efficiently
-- 🔐 **Secure Authentication** - Multi-factor authentication with OTP verification
-- 📱 **Cross-Platform** - Works seamlessly on mobile, desktop, and web
+-  **AI-Powered Search** - Find cases using simple natural language queries
+-  **For Doctors** - Quickly locate specific cases for diagnosis and reference
+-  **For Students** - Search and study medical imaging cases efficiently
+-  **Secure Authentication** - Multi-factor authentication with OTP verification
+-  **Cross-Platform** - Works seamlessly on mobile, desktop, and web
 
 
 
